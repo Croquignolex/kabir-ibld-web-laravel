@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//--Localized landing routes...
+Route::get('/', 'HomeController')->name('home');
