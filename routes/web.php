@@ -11,5 +11,5 @@
 |
 */
 
-//--Localized landing routes...
+//Localized landing routes...
 Route::get('/', 'HomeController')->name('home');
