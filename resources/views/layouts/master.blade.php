@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
 
         {{--Favicons--}}
-        <link rel="icon" href="{{ favicon_img_asset('favicon-32x32') }}" sizes="32x32" type="image/png">
-        <link rel="icon" href="{{ favicon_img_asset('favicon-16x16') }}" sizes="16x16" type="image/png">
+        <link rel="icon" href="{{ favicon_img_asset('favicon-32x32') }}" sizes="32x32" type="image/png" />
+        <link rel="icon" href="{{ favicon_img_asset('favicon-16x16') }}" sizes="16x16" type="image/png" />
     </head>
 
     <body id="page-top">

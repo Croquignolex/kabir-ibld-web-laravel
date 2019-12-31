@@ -49,9 +49,14 @@
                         Plan tarifaire
                     </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">
                         Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger bg-landing-sigh" href="{{ route('login') }}">
+                        Connexion
                     </a>
                 </li>
             </ul>
