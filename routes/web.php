@@ -19,6 +19,8 @@ Route::prefix('app')->group(function() {
     Route::group(['namespace' => 'App'], function () {
         // Auth routes...
         Auth::routes();
+        // ...
+        Route::get('dashboard', 'DashboardController@index')->name('app.dashboard');
     });
 });
 

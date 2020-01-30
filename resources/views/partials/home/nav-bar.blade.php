@@ -55,9 +55,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger bg-landing-sigh" href="{{ route('login') }}">
-                        Connexion
-                    </a>
+                    @auth
+                        <a class="nav-link js-scroll-trigger bg-landing-sigh" href="{{ Auth::user()->dashboardRoute }}">
+                            {{ Auth::user()->format_full_name }}
+                        </a>
+                    @else
+                        <a class="nav-link js-scroll-trigger bg-landing-sigh" href="{{ route('login') }}">
+                            Connexion
+                        </a>
+                    @endauth
                 </li>
             </ul>
         </div>

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <input type="email" class="form-control input-lg" id="email"
-                       placeholder="Email" value="{{ old('email') }}" />
+                       placeholder="Email" value="{{ old('email') }}" name="email"/>
                 <label for="email">
                     @if ($errors->has('email'))
                         <span class="text-danger">

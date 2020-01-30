@@ -9,7 +9,7 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <input type="email" class="form-control input-lg" id="email"
-                       placeholder="Email" value="{{ old('email') }}" />
+                       placeholder="Email" value="{{ old('email') }}" name="email"/>
                 <label for="email">
                     @if ($errors->has('email'))
                         <span class="text-danger">
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group col-md-12">
                 <input type="password" class="form-control input-lg" id="password"
-                       placeholder="Nouveau mot de passe" value="{{ old('password') }}" />
+                       placeholder="Nouveau mot de passe" value="{{ old('password') }}" name="password"/>
                 <label for="password">
                     @if ($errors->has('password'))
                         <span class="text-danger">
@@ -30,7 +30,7 @@
                 </label>
             </div>
             <div class="form-group col-md-12">
-                <input type="password" class="form-control input-lg" id="password_confirmation"
+                <input type="password" class="form-control input-lg" id="password_confirmation" name="password_confirmation"
                        placeholder="Confirmer le mot de passe" value="{{ old('password_confirmation') }}" />
                 <label for="password_confirmation">
                     @if ($errors->has('password_confirmation'))
