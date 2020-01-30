@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="card-body p-4">
-                        <h4 class="text-dark mb-4">Connexion</h4>
+                        <h4 class="text-dark mb-4">@yield('auth.master.page')</h4>
                         @if(session()->has('popup.message'))
                             <div class="text-center">
                                 <div class="alert alert-{{ session('popup.type') }} alert-dismissable text-danger" role="alert">
@@ -46,6 +46,5 @@
 @endsection
 
 @push('master.script')
-    <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
     <script src="{{ js_asset('nprogress') }}" type="text/javascript"></script>
 @endpush
