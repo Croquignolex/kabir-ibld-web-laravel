@@ -41,13 +41,13 @@ Route::prefix('admin')->group(function() {
             Route::post('/password/reset/{token}', 'ResetPasswordController@reset');
 
             //--Account routes...
-            Route::get('/account/validation/{email}/{token}', 'AccountController@validation')->name('admin.account.validation');
+            /*Route::get('/account/validation/{email}/{token}', 'AccountController@validation')->name('admin.account.validation');
             Route::get('/account', 'AccountController@index')->name('admin.account.index');
             Route::get('/account/password', 'AccountController@password')->name('admin.account.password');
             Route::get('/account/email', 'AccountController@email')->name('admin.account.email');
             Route::put('/account', 'AccountController@update');
             Route::put('/account/password', 'AccountController@changePassword');
-            Route::post('/account/email', 'AccountController@sendLink');
+            Route::post('/account/email', 'AccountController@sendLink');*/
         });
     });
 });

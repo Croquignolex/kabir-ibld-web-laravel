@@ -24,7 +24,6 @@ class RedirectIfAuthenticated
                 return redirect(route('app.dashboard'));
             else return redirect(route('admin.dashboard'));
         }
-
         return $next($request);
     }
 }

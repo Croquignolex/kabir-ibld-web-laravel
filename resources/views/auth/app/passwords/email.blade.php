@@ -4,7 +4,7 @@
 @section('auth.master.page', 'Récupérer le mot de passe')
 
 @section('auth.master.body')
-    <form action="" method="POST">
+    <form action="{{ route('password.email') }}" method="POST">
         {{ csrf_field() }}
         <div class="row">
             <div class="form-group col-md-12">
