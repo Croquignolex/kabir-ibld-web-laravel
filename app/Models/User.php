@@ -23,6 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string post_code
  * @property mixed authorised
  * @property mixed currencies
+ * @property string avatar_src
  * @property mixed is_factored
  * @property string profession
  * @property bool is_confirmed
@@ -40,6 +41,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use LocaleDateTimeTrait;
+
+    const USER_DEFAULT_IMAGE = 'default';
 
     /**
      * The attributes that are mass assignable.
@@ -112,7 +115,7 @@ class User extends Authenticatable
      */
     public function getFormatFirstNameAttribute()
     {
-        return ucfirst($this->first_name);
+        return ucfirst(mb_strtolower($this->first_name));
     }
 
     /**
@@ -137,5 +140,17 @@ class User extends Authenticatable
     public function getAuthorisedAttribute()
     {
         return Auth::user()->role->type !== Role::USER;
+    }
+
+    /**
+     * User avatar image src
+     *
+     * @return string
+     */
+    public function getAvatarSrcAttribute() {
+        if(!file_exists(img_asset($this->image)))
+            $this->update(['image' => self::USER_DEFAULT_IMAGE]);
+
+        return img_asset($this->image);
     }
 }

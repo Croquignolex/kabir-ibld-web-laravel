@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('master.title', page_title('Accueil'))
+@section('master.body.id', 'page-top')
 
 @push('master.style')
     <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">

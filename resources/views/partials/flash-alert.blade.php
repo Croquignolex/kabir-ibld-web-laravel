@@ -1,6 +1,6 @@
 @if(session()->has('popup.message'))
     <script>
-        notification(
+        /*notification(
             "{{ session('popup.title') }}",
             "{{ session('popup.message') }}",
             "{{ session('popup.type') }}",
@@ -8,6 +8,6 @@
             "{{ session('popup.animate.enter') }}",
             "{{ session('popup.animate.exit') }}",
             "{{ session('popup.delay') }}"
-        );
+        );*/
     </script>
 @endif

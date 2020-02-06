@@ -21,7 +21,7 @@
         <link rel="icon" href="{{ favicon_img_asset('favicon-16x16') }}" sizes="16x16" type="image/png" />
     </head>
 
-    <body id="page-top">
+    <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="@yield('master.body.id')">
         {{--Full screen page loader--}}
         <div id="loader"></div>
 

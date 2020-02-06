@@ -3,8 +3,7 @@
 @section('master.title')@yield('auth.master.title')@endsection
 
 @push('master.style')
-    <link rel="stylesheet" href="{{ css_asset('nprogress') }}" type="text/css">
-    <link rel="stylesheet" href="{{ css_asset('sleek.min') }}" type="text/css">
+    <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css">
 @endpush
 
 @section('master.body')
@@ -44,7 +43,3 @@
         </div>
     </div>
 @endsection
-
-@push('master.script')
-    <script src="{{ js_asset('nprogress') }}" type="text/javascript"></script>
-@endpush
