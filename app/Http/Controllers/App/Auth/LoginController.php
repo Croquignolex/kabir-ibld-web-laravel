@@ -129,7 +129,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        info_flash_message(trans('auth.info'), trans('auth.welcome',
+        toast_message(trans('auth.info'),  trans('auth.welcome',
             ['name' => $user->format_full_name]));
     }
 
@@ -138,6 +138,6 @@ class LoginController extends Controller
      */
     private function redirectTo()
     {
-        return  route('app.dashboard');
+        return  route('dashboard');
     }
 }

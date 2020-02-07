@@ -73,13 +73,25 @@ if(!function_exists('seo_description'))
     }
 }
 
-if(!function_exists('about_pages'))
+if(!function_exists('dashboard_pages'))
 {
     /**
      * @return Collection
      */
-    function about_pages()
+    function dashboard_pages()
     {
-        return collect(['about']);
+        return collect(['dashboard']);
     }
 }
+
+if(!function_exists('domain_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function domain_pages()
+    {
+        return collect(['domains.index', 'domains.create', 'domains.edit']);
+    }
+}
+

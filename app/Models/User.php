@@ -97,7 +97,7 @@ class User extends Authenticatable
      */
     public function getDashboardRouteAttribute()
     {
-        if($this->role->type === Role::USER) return route('app.dashboard');
+        if($this->role->type === Role::USER) return route('dashboard');
         else return route('admin.dashboard');
     }
 

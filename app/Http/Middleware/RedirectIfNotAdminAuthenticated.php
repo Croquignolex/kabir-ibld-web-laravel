@@ -23,7 +23,7 @@ class RedirectIfNotAdminAuthenticated
         else
         {
             if(Auth::user()->role->type === Role::USER)
-                return redirect(route('app.dashboard'));
+                return redirect(route('dashboard'));
         }
 
         return $next($request);

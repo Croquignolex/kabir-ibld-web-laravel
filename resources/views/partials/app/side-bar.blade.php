@@ -11,22 +11,45 @@
         <div class="sidebar-scrollbar">
             <!-- Sidebar menu -->
             <ul class="nav sidebar-inner" id="sidebar-menu">
-                <li class="has-sub active expand" >
+                <!-- Dashboard -->
+                <li class="has-sub expand {{ active_page(dashboard_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                        aria-expanded="false" aria-controls="dashboard">
                         <i class="fa fa-chart-pie"></i>
                         <span class="nav-text">Tableau de bord</span> <b class="caret"></b>
                     </a>
-                    <ul class="collapse show"  id="dashboard" data-parent="#sidebar-menu">
+                    <ul class="collapse {{ active_page(dashboard_pages(), 'expend') }}" id="dashboard" data-parent="#sidebar-menu">
                         <div class="sub-menu">
-                            <li class="active">
-                                <a class="sidenav-item-link" href="#">
-                                    <span class="nav-text">Tableau de bord 1</span>
+                            <li class="{{ active_page(collect('dashboard')) }}">
+                                <a class="sidenav-item-link" href="{{ route('dashboard') }}">
+                                    <span class="nav-text">Général</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="sidenav-item-link" href="#">
-                                    <span class="nav-text">Tableau de bord 1</span>
+                                    <span class="nav-text">Activité</span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <!-- Domain -->
+                <li class="has-sub expand {{ active_page(domain_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#domain"
+                       aria-expanded="false" aria-controls="domain">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="nav-text">Domaines</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(domain_pages(), 'expend') }}" id="domain" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('domains.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('domains.index') }}">
+                                    <span class="nav-text">Tous les domaines</span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('domains.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('domains.create') }}">
+                                    <span class="nav-text">Ajouter un domaine</span>
                                 </a>
                             </li>
                         </div>

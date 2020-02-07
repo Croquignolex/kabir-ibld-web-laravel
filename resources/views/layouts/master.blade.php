@@ -12,6 +12,7 @@
         <title>@yield('master.title')</title>
 
         <link rel="stylesheet" href="{{ css_asset('all') }}" type="text/css">
+        <link rel="stylesheet" href="{{ css_asset('toastr.min') }}" type="text/css">
         {{--Css files--}}
         @stack('master.style')
         <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
@@ -24,12 +25,14 @@
     <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="@yield('master.body.id')">
         {{--Full screen page loader--}}
         <div id="loader"></div>
+        <div id="toaster"></div>
 
         {{--Page body content--}}
         @yield('master.body')
 
         {{--Js files--}}
         <script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
+        <script src="{{ js_asset('toastr.min') }}" type="text/javascript"></script>
         @stack('master.script')
         <script src="{{ js_asset('master') }}" type="text/javascript"></script>
 

@@ -1,5 +1,18 @@
 <?php
 
+if(!function_exists('toast_message'))
+{
+    /**
+     * @param $title
+     * @param $message
+     */
+    function toast_message($title, $message)
+    {
+        session()->flash('toast.title', $title);
+        session()->flash('toast.message', $message);
+    }
+}
+
 if(!function_exists('info_flash_message'))
 {
     /**

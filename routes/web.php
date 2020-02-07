@@ -20,7 +20,8 @@ Route::prefix('app')->group(function() {
         // Auth routes...
         Auth::routes();
         // ...
-        Route::get('dashboard', 'DashboardController@index')->name('app.dashboard');
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::resource('domains', 'DomainController');
     });
 });
 
