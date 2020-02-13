@@ -241,8 +241,8 @@ INSERT INTO `countries` (`id`, `code`, `alpha_2`, `alpha_3`, `en_name`, `fr_name
 (240, 891, 'CS', 'SCG', 'Serbia and Montenegro', 'Serbie-et-Monténégro'),
 (241, 894, 'ZM', 'ZMB', 'Zambia', 'Zambie');
 
-INSERT INTO `domains` (`id`, `name`, `description`, `country_id`) VALUES
-(1, 'Agriculture', "Principalement la culture des terres en vue de la production des végétaux utiles à l'homme et à l'élevage des animaux; accessoirement l'élevage des animaux", 36),
-(2, 'Assurance', "Le moyen mis en œuvre par les organismes d’assurance pour les prémunir contre ce risque est de les associer à une communauté de personnes (les assurés)", 36),
-(3, 'Culture', "Eensemble des traits distinctifs, spirituels, matériels, intellectuels et affectifs, qui caractérisent une société ou un groupe social", 36),
-(4, 'Finance', "Fournir l'argent nécessaire à la réalisation d'une opération économique", 36);
+INSERT INTO `domains` (`id`, `name`, `icon`, `description`, `country_id`) VALUES
+(1, 'Agriculture', 'mdi mdi-pig', "Principalement la culture des terres en vue de la production des végétaux utiles à l'homme et à l'élevage des animaux; accessoirement l'élevage des animaux", 36),
+(2, 'Assurance', 'mdi mdi-safe', "Le moyen mis en œuvre par les organismes d’assurance pour les prémunir contre ce risque est de les associer à une communauté de personnes (les assurés)", 36),
+(3, 'Culture', 'mdi mdi-barley', "Eensemble des traits distinctifs, spirituels, matériels, intellectuels et affectifs, qui caractérisent une société ou un groupe social", 36),
+(4, 'Finance', 'mdi mdi-coin', "Fournir l'argent nécessaire à la réalisation d'une opération économique", 36);

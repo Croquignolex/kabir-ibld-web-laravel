@@ -13,7 +13,7 @@ class Domain extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'description', 'name', 'country_id'
+        'description', 'name', 'icon', 'country_id'
     ];
 
     /**

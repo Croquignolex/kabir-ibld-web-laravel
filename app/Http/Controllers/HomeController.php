@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 
@@ -12,6 +13,7 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-        return view('home');
+        $domains = Domain::all();
+        return view('home', compact('domains'));
     }
 }

@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ css_asset('toastr.min') }}" type="text/css">
         {{--Css files--}}
         @stack('master.style')
+        <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
 
         {{--Favicons--}}

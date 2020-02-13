@@ -15,21 +15,27 @@
                 <li class="has-sub expand {{ active_page(dashboard_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                        aria-expanded="false" aria-controls="dashboard">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">Tableau de bord</span> <b class="caret"></b>
+                        <span class="nav-text">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            Tableau de bord
+                        </span>
+                        <b class="caret"></b>
                     </a>
                     <ul class="collapse {{ active_page(dashboard_pages(), 'expend') }}" id="dashboard" data-parent="#sidebar-menu">
                         <div class="sub-menu">
                             <li class="{{ active_page(collect('dashboard')) }}">
                                 <a class="sidenav-item-link" href="{{ route('dashboard') }}">
-                                    <span class="nav-text">Général</span>
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-monitor-dashboard"></i>
+                                        Général
+                                    </span>
                                 </a>
                             </li>
-                            <li>
+                            {{--<li>
                                 <a class="sidenav-item-link" href="#">
                                     <span class="nav-text">Activité</span>
                                 </a>
-                            </li>
+                            </li>--}}
                         </div>
                     </ul>
                 </li>
@@ -44,12 +50,18 @@
                         <div class="sub-menu">
                             <li class="{{ active_page(collect('domains.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('domains.index') }}">
-                                    <span class="nav-text">Tous les domaines</span>
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-folder-search-outline"></i>
+                                        Tous les domaines
+                                    </span>
                                 </a>
                             </li>
                             <li class="{{ active_page(collect('domains.create')) }}">
                                 <a class="sidenav-item-link" href="{{ route('domains.create') }}">
-                                    <span class="nav-text">Ajouter un domaine</span>
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-folder-plus-outline"></i>
+                                        Ajouter un domaine
+                                    </span>
                                 </a>
                             </li>
                         </div>
@@ -66,7 +78,9 @@
                         <div class="sub-menu">
                             <li class="{{ active_page(collect('countries.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('countries.index') }}">
-                                    <span class="nav-text"><i class="mdi mdi-map"></i> Pays</span>
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-map"></i> Pays
+                                    </span>
                                 </a>
                             </li>
                         </div>

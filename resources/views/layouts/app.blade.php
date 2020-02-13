@@ -5,7 +5,6 @@
 
 @push('master.style')
     @stack('app.master.style')
-    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css">
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
