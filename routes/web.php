@@ -22,6 +22,7 @@ Route::prefix('app')->group(function() {
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('domains', 'DomainController');
+        Route::resource('countries', 'CountryController');
     });
 });
 

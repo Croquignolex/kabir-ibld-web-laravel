@@ -9697,14 +9697,7 @@ div.copied {
 .pagination-flat-rounded .page-item .page-link {
     border-radius: 100%; }
 
-.pagination-seperated .page-item .page-link {
-    padding: .75rem;
-    margin: 0 0.31rem;
-    border-radius: 0; }
 @media (min-width: 768px) {
-    .pagination-seperated .page-item .page-link {
-        padding: 1rem 1.25rem; } }
-
 .pagination-seperated .page-item:last-child .page-link {
     margin-right: 0; }
 
@@ -12226,8 +12219,6 @@ tbody tr td:first-child {
     display: inline-block !important; }
 .responsive-data-table .dataTables_filter label {
     margin-bottom: 0; }
-.responsive-data-table .dataTables_filter label .form-control-sm {
-    height: 40px; }
 
 .responsive-data-table .dataTables_length {
     display: inline-block !important;
@@ -12424,6 +12415,4 @@ html[dir="rtl"] .sidebar li > a .caret:before {
     content: '\f141'; }
 
 html[dir="rtl"] .github-link svg {
-    transform: rotateY(180deg); }
-
-/*# sourceMappingURL=sleek.css.map */
+    transform: rotateY(180deg);}

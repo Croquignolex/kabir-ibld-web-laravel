@@ -36,24 +36,24 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-user"></i> Mon Profil
+                        <i class="mdi mdi-account"></i> Mon Profil
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-envelope"></i> Messages
+                        <i class="mdi mdi-email"></i> Messages
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-cog"></i> Paramètres
+                        <i class="mdi mdi-settings"></i> Paramètres
                     </a>
                 </li>
                 <li class="dropdown-footer">
                     <a class="nav-link logout" href="javascript: void(0);" role="button" data-placement="bottom"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                        data-content="Déconnexion" data-trigger="hover" data-toggle="popover">
-                        <i class="fa fa-power-off"></i>
+                        <i class="mdi mdi-logout"></i>
                         Déconnexion
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

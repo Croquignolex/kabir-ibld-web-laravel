@@ -3,10 +3,9 @@
 @section('master.title')@yield('app.master.title')@endsection
 @section('master.body.id', 'body')
 
-
 @push('master.style')
+    @stack('app.master.style')
     <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ css_asset('toastr.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css">
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -16,7 +15,6 @@
 @endpush
 
 @section('master.body')
-    <div id="toaster"></div>
     <div class="wrapper">
         @include('partials.app.side-bar')
         <div class="page-wrapper">
@@ -45,7 +43,22 @@
             </header>
             <!-- Body content -->
             <div class="content-wrapper">
-                <div class="content">@yield('app.master.body')</div>
+                <div class="content">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb-wrapper">
+                        <h1><i class="{{ $breadcrumb_icon }}"></i> {{ $breadcrumb_name }}</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb p-0">
+                                <li class="breadcrumb-item"><span class="mdi mdi-home"></span></li>
+                                @foreach($breadcrumb_chain as $chain)
+                                    <li class="breadcrumb-item">{{ $chain }}</li>
+                                @endforeach
+                            </ol>
+                        </nav>
+                    </div>
+                    <!-- Content -->
+                    @yield('app.master.body')
+                </div>
             </div>
             <!-- Footer -->
             <footer class="footer mt-auto">
@@ -58,7 +71,7 @@
 @endsection
 
 @push('master.script')
+    @stack('app.master.script')
     <script src="{{ js_asset('jquery.slimscroll.min') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('toastr.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('app') }}" type="text/javascript"></script>
 @endpush

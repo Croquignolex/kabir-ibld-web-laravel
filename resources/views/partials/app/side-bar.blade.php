@@ -15,7 +15,7 @@
                 <li class="has-sub expand {{ active_page(dashboard_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                        aria-expanded="false" aria-controls="dashboard">
-                        <i class="fa fa-chart-pie"></i>
+                        <i class="mdi mdi-view-dashboard-outline"></i>
                         <span class="nav-text">Tableau de bord</span> <b class="caret"></b>
                     </a>
                     <ul class="collapse {{ active_page(dashboard_pages(), 'expend') }}" id="dashboard" data-parent="#sidebar-menu">
@@ -37,7 +37,7 @@
                 <li class="has-sub expand {{ active_page(domain_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#domain"
                        aria-expanded="false" aria-controls="domain">
-                        <i class="fa fa-briefcase"></i>
+                        <i class="mdi mdi-folder-multiple-outline"></i>
                         <span class="nav-text">Domaines</span> <b class="caret"></b>
                     </a>
                     <ul class="collapse {{ active_page(domain_pages(), 'expend') }}" id="domain" data-parent="#sidebar-menu">
@@ -50,6 +50,23 @@
                             <li class="{{ active_page(collect('domains.create')) }}">
                                 <a class="sidenav-item-link" href="{{ route('domains.create') }}">
                                     <span class="nav-text">Ajouter un domaine</span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <!-- Settings -->
+                <li class="has-sub expand {{ active_page(tools_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tool"
+                       aria-expanded="false" aria-controls="tool">
+                        <i class="mdi mdi-pencil-box-multiple"></i>
+                        <span class="nav-text">Outils</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(tools_pages(), 'expend') }}" id="tool" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('countries.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('countries.index') }}">
+                                    <span class="nav-text"><i class="mdi mdi-map"></i> Pays</span>
                                 </a>
                             </li>
                         </div>

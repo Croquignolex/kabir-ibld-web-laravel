@@ -95,3 +95,13 @@ if(!function_exists('domain_pages'))
     }
 }
 
+if(!function_exists('tools_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function tools_pages()
+    {
+        return collect(['countries.index', 'countries.create', 'countries.edit']);
+    }
+}
