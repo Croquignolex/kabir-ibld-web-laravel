@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin.auth');
     }
 
     /**
@@ -21,6 +21,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('app.dashboard');
+        return view('admin.dashboard');
     }
 }

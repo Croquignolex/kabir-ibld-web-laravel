@@ -4,6 +4,9 @@
 
 @push('master.style')
     <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css">
+    @isset($color)
+        <link rel="stylesheet" href="{{ css_asset('admin') }}" type="text/css">
+    @endisset
 @endpush
 
 @section('master.body')
@@ -11,7 +14,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-xl-5 col-lg-6 col-md-10">
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header {{ $color ?? 'bg-primary' }}">
                         <div class="app-brand">
                             <a href="{{ route('home') }}">
                                 <img src="{{ img_asset('logo') }}" alt="..." width="50">

@@ -84,24 +84,37 @@ if(!function_exists('dashboard_pages'))
     }
 }
 
-if(!function_exists('domain_pages'))
+if(!function_exists('admin_dashboard_pages'))
 {
     /**
      * @return Collection
      */
-    function domain_pages()
+    function admin_dashboard_pages()
     {
-        return collect(['domains.index', 'domains.create', 'domains.edit']);
+        return collect(['admin.dashboard']);
     }
 }
 
-if(!function_exists('tools_pages'))
+if(!function_exists('admin_domain_pages'))
 {
     /**
      * @return Collection
      */
-    function tools_pages()
+    function admin_domain_pages()
     {
-        return collect(['countries.index', 'countries.create', 'countries.edit']);
+        return collect(['admin.domains.index', 'admin.domains.create',
+            'admin.domains.edit']);
+    }
+}
+
+if(!function_exists('admin_tools_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_tools_pages()
+    {
+        return collect(['admin.countries.index', 'admin.countries.create',
+            'admin.countries.edit']);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Country;
 use Illuminate\View\View;
@@ -10,11 +10,19 @@ use Illuminate\Contracts\View\Factory;
 class CountryController extends Controller
 {
     /**
+     * CountryController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('admin.auth');
+    }
+
+    /**
      * @return Factory|View
      */
     public function index()
     {
         $countries = Country::all();
-        return view('app.country.index', compact('countries'));
+        return view('admin.country.index', compact('countries'));
     }
 }

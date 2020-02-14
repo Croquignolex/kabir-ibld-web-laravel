@@ -108,7 +108,6 @@ class LoginController extends Controller
     {
         $credentials = $request->only($this->username(), 'password');
         Arr::add($credentials, 'is_confirmed', true);
-        // $credentials = array_add($credentials, 'is_confirmed', true);
         return $credentials;
     }
 

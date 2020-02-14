@@ -29,19 +29,12 @@ Route::prefix('app')->group(function() {
 // Admin routes...
 Route::prefix('admin')->group(function() {
     Route::group(['namespace' => 'Admin'], function () {
-        // Auth routes...
         Route::group(['namespace' => 'Auth'], function() {
-            //--Admin login routes...
+            // Auth routes...
+            Route::get('/', function () { return redirect(route('admin.login')); });
             Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
             Route::post('/login', 'LoginController@login');
             Route::post('/logout', 'LoginController@logout')->name('admin.logout');
-
-            //--Admin password reset routes...
-            Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-            Route::post('/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
-            Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.reset');
-            Route::post('/password/reset/{token}', 'ResetPasswordController@reset');
-
             //--Account routes...
             /*Route::get('/account/validation/{email}/{token}', 'AccountController@validation')->name('admin.account.validation');
             Route::get('/account', 'AccountController@index')->name('admin.account.index');
@@ -51,5 +44,19 @@ Route::prefix('admin')->group(function() {
             Route::put('/account/password', 'AccountController@changePassword');
             Route::post('/account/email', 'AccountController@sendLink');*/
         });
+        // ...
+        Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
+        Route::resource('/domains', 'DomainController', [
+            'names' => ['index' => 'admin.domains.index', 'create' => 'admin.domains.create',
+                'store' => 'admin.domains.store', 'show' => 'admin.domains.show',
+                'edit' => 'admin.domains.edit', 'update' => 'admin.domains.update',
+                'destroy' => 'admin.domains.destroy']
+        ]);
+        Route::resource('/countries', 'CountryController', [
+            'names' => ['index' => 'admin.countries.index', 'create' => 'admin.countries.create',
+                'store' => 'admin.countries.store', 'show' => 'admin.countries.show',
+                'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
+                'destroy' => 'admin.countries.destroy']
+        ]);
     });
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Domain;
 use Illuminate\View\View;
@@ -10,12 +10,20 @@ use Illuminate\Contracts\View\Factory;
 class DomainController extends Controller
 {
     /**
+     * DomainController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('admin.auth');
+    }
+
+    /**
      * @return Factory|View
      */
     public function index()
     {
         $domains = Domain::all();
-        return view('app.domain.index', compact('domains'));
+        return view('admin.domain.index', compact('domains'));
     }
 
     /**
@@ -23,6 +31,6 @@ class DomainController extends Controller
      */
     public function create()
     {
-        return view('app.domain.create');
+        return view('admin.domain.create');
     }
 }

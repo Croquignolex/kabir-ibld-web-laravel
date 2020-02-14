@@ -11,11 +11,18 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @if(($layout ?? '') === 'admin')
+        <link rel="stylesheet" href="{{ css_asset('admin') }}" type="text/css">
+    @endif
 @endpush
 
 @section('master.body')
     <div class="wrapper">
-        @include('partials.app.side-bar')
+        @if(($layout ?? '') === 'admin')
+            @include('partials.admin.side-bar')
+        @else
+            @include('partials.app.side-bar')
+        @endif
         <div class="page-wrapper">
             <!-- Header -->
             <header class="main-header" id="header">
@@ -37,7 +44,7 @@
                             <ul id="search-results"></ul>
                         </div>
                     </div>
-                    @include('partials.app.nav-menu')
+                    @include('partials.nav-menu')
                 </nav>
             </header>
             <!-- Body content -->

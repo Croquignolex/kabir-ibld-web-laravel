@@ -1,17 +1,18 @@
 @extends('layouts.app', [
-    'breadcrumb_name' => 'Domaines',
-    'breadcrumb_icon' => 'mdi mdi-folder-plus-outline',
-    'breadcrumb_chain' => ['Domaines', 'Nouveau domaine']
-])
+    'layout' => 'admin',
+    'breadcrumb_name' => 'Tableaau de bord',
+    'breadcrumb_icon' => 'mdi mdi-monitor-dashboard',
+    'breadcrumb_chain' => ['Tableaau de bord', 'Général']
+]))
 
-@section('app.master.title', page_title('Nouveau domaine'))
+@section('app.master.title', page_title('Tableau de board'))
 
 @section('app.master.body')
     <div class="row">
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>Nouveau domaine</h2>
+                    <h2>Général</h2>
                 </div>
                 <!-- body -->
                 <div class="card-body">
