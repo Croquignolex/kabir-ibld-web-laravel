@@ -32,9 +32,9 @@ Route::prefix('admin')->group(function() {
         Route::group(['namespace' => 'Auth'], function() {
             // Auth routes...
             Route::get('/', function () { return redirect(route('admin.login')); });
-            Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
-            Route::post('/login', 'LoginController@login');
-            Route::post('/logout', 'LoginController@logout')->name('admin.logout');
+            Route::get('login', 'LoginController@showLoginForm')->name('admin.login');
+            Route::post('login', 'LoginController@login');
+            Route::post('logout', 'LoginController@logout')->name('admin.logout');
             //--Account routes...
             /*Route::get('/account/validation/{email}/{token}', 'AccountController@validation')->name('admin.account.validation');
             Route::get('/account', 'AccountController@index')->name('admin.account.index');
@@ -46,13 +46,15 @@ Route::prefix('admin')->group(function() {
         });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
-        Route::resource('/domains', 'DomainController', [
+        Route::get('settings', 'SettingController@index')->name('admin.settings.index');
+        Route::post('settings', 'SettingController@update')->name('admin.settings.update');
+        Route::resource('domains', 'DomainController', [
             'names' => ['index' => 'admin.domains.index', 'create' => 'admin.domains.create',
                 'store' => 'admin.domains.store', 'show' => 'admin.domains.show',
                 'edit' => 'admin.domains.edit', 'update' => 'admin.domains.update',
                 'destroy' => 'admin.domains.destroy']
         ]);
-        Route::resource('/countries', 'CountryController', [
+        Route::resource('countries', 'CountryController', [
             'names' => ['index' => 'admin.countries.index', 'create' => 'admin.countries.create',
                 'store' => 'admin.countries.store', 'show' => 'admin.countries.show',
                 'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',

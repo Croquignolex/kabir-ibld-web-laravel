@@ -9697,7 +9697,6 @@ div.copied {
 .pagination-flat-rounded .page-item .page-link {
     border-radius: 100%; }
 
-@media (min-width: 768px) {
 .pagination-seperated .page-item:last-child .page-link {
     margin-right: 0; }
 
