@@ -67,6 +67,34 @@
                         </div>
                     </ul>
                 </li>
+                <!-- Service -->
+                <li class="has-sub expand {{ active_page(admin_service_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#service"
+                       aria-expanded="false" aria-controls="service">
+                        <i class="mdi mdi-database"></i>
+                        <span class="nav-text">Services</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(admin_service_pages(), 'expend') }}" id="service" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('admin.services.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.services.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-database-search"></i>
+                                        Tous les services
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('admin.services.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.services.create') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-database-plus"></i>
+                                        Ajouter un service
+                                    </span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
                 <!-- Settings -->
                 <li class="has-sub expand {{ active_page(admin_tools_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tool"

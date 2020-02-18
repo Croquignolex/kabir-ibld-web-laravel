@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
     {
         Setting::create([
             'phone' => '+345-345456',
-            'town' => ' Toronto, CANADA',
+            'town' => 'Toronto, CANADA',
         ]);
     }
 }

@@ -54,6 +54,12 @@ Route::prefix('admin')->group(function() {
                 'edit' => 'admin.domains.edit', 'update' => 'admin.domains.update',
                 'destroy' => 'admin.domains.destroy']
         ]);
+        Route::resource('services', 'ServiceController', [
+            'names' => ['index' => 'admin.services.index', 'create' => 'admin.services.create',
+                'store' => 'admin.services.store', 'show' => 'admin.services.show',
+                'edit' => 'admin.services.edit', 'update' => 'admin.services.update',
+                'destroy' => 'admin.services.destroy']
+        ]);
         Route::resource('countries', 'CountryController', [
             'names' => ['index' => 'admin.countries.index', 'create' => 'admin.countries.create',
                 'store' => 'admin.countries.store', 'show' => 'admin.countries.show',

@@ -107,6 +107,18 @@ if(!function_exists('admin_domain_pages'))
     }
 }
 
+if(!function_exists('admin_service_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_service_pages()
+    {
+        return collect(['admin.services.index', 'admin.services.create',
+            'admin.services.edit']);
+    }
+}
+
 if(!function_exists('admin_tools_pages'))
 {
     /**

@@ -3,7 +3,7 @@
         <div class="feature-icon-block mb-4">
             <i class="{{ $icon }}"></i>
         </div>
-        <h4 class="mb-3 ">{{ $title }}</h4>
+        <h4 class="mb-3 text-primary">{{ $title }}</h4>
         <p>{{ $description }}</p>
     </div>
 </div>
