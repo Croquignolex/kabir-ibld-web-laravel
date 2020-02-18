@@ -1,9 +1,31 @@
 @php $user = \Illuminate\Support\Facades\Auth::user(); @endphp
-<div class="navbar-right ">
+<div class="navbar-right">
     <ul class="nav navbar-nav">
         <li class="dropdown notifications-menu">
             <button class="dropdown-toggle" data-toggle="dropdown">
                 <i class="mdi mdi-bell-outline"></i>
+                {{--<i class="mdi mdi-bell-ring text-danger"></i>
+                <small class="very-small">(2)</small>--}}
+            </button>
+            <!-- Notifications area -->
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-header">0 nouvelles notifications</li>
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-account-plus"></i> notification
+                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
+                    </a>
+                </li>
+                <li class="dropdown-footer">
+                    <a class="text-center" href="#">Tous voir</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown notifications-menu">
+            <button class="dropdown-toggle" data-toggle="dropdown">
+                <i class="mdi mdi-email-open-outline"></i>
+                {{--<i class="mdi mdi-email text-danger"></i>
+                <small class="very-small">(2)</small>--}}
             </button>
             <!-- Notifications area -->
             <ul class="dropdown-menu dropdown-menu-right">
@@ -30,18 +52,13 @@
                 <li class="dropdown-header">
                     <img src="{{ $user->avatar_src }}" class="img-circle" alt="User Image" />
                     <div class="d-inline-block">
-                        {{ $user->format_full_name }}
-                        <small class="pt-1">{{ $user->email }}</small>
+                        {{ text_format($user->format_full_name, 20) }}
+                        <small class="pt-1">{{ text_format($user->email, 25) }}</small>
                     </div>
                 </li>
                 <li>
                     <a href="#">
                         <i class="mdi mdi-account"></i> Mon Profil
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="mdi mdi-email"></i> Messages
                     </a>
                 </li>
                 <li>

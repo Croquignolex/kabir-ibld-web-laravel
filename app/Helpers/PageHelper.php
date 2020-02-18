@@ -103,7 +103,7 @@ if(!function_exists('admin_domain_pages'))
     function admin_domain_pages()
     {
         return collect(['admin.domains.index', 'admin.domains.create',
-            'admin.domains.edit']);
+            'admin.domains.edit', 'admin.domains.show']);
     }
 }
 
@@ -115,7 +115,7 @@ if(!function_exists('admin_service_pages'))
     function admin_service_pages()
     {
         return collect(['admin.services.index', 'admin.services.create',
-            'admin.services.edit']);
+            'admin.services.edit', 'admin.services.show']);
     }
 }
 
@@ -126,7 +126,6 @@ if(!function_exists('admin_tools_pages'))
      */
     function admin_tools_pages()
     {
-        return collect(['admin.countries.index', 'admin.countries.create',
-            'admin.countries.edit', 'admin.settings.index']);
+        return collect(['admin.countries.index', 'admin.settings.index']);
     }
 }

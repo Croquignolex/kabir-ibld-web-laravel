@@ -44,6 +44,5 @@
 @push('master.script')
     <script src="{{ js_asset('bootstrap.bundle.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.easing.min') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('ajax-contact') }}" type="text/javascript"></script>
     <script src="{{ js_asset('landing') }}" type="text/javascript"></script>
 @endpush

@@ -40,7 +40,7 @@ class SettingController extends Controller
             'phone' => $request->input('phone'),
             'town' => $request->input('town')
         ]);
-        toast_message('Information',  'Informations enrégistrées avec succès');
+        toast_message('Informations enrégistrées avec succès');
         return redirect(route('admin.settings.index'));
     }
 }

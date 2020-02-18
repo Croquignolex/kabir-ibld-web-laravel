@@ -12,7 +12,8 @@
 */
 
 // Landing routes...
-Route::get('/', 'HomeController')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/contact', 'HomeController@contact')->name('contact');
 
 // App routes...
 Route::prefix('app')->group(function() {
@@ -46,8 +47,14 @@ Route::prefix('admin')->group(function() {
         });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
+        // Setting
         Route::get('settings', 'SettingController@index')->name('admin.settings.index');
         Route::post('settings', 'SettingController@update')->name('admin.settings.update');
+        // Contact
+        Route::resource('contacts', 'ContactController', ['only' => ['index', 'destroy']]);
+        Route::get('contacts/viewed', 'ContactController@viewed')->name('messages.contacts');
+        Route::post('contacts/answer/{contact}', 'ContactController@answer')->name('contacts.answer');
+        // ...
         Route::resource('domains', 'DomainController', [
             'names' => ['index' => 'admin.domains.index', 'create' => 'admin.domains.create',
                 'store' => 'admin.domains.store', 'show' => 'admin.domains.show',
@@ -61,10 +68,8 @@ Route::prefix('admin')->group(function() {
                 'destroy' => 'admin.services.destroy']
         ]);
         Route::resource('countries', 'CountryController', [
-            'names' => ['index' => 'admin.countries.index', 'create' => 'admin.countries.create',
-                'store' => 'admin.countries.store', 'show' => 'admin.countries.show',
-                'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
-                'destroy' => 'admin.countries.destroy']
+            'only' => ['index'],
+            'names' => ['index' => 'admin.countries.index']
         ]);
     });
 });

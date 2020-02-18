@@ -3,12 +3,11 @@
 if(!function_exists('toast_message'))
 {
     /**
-     * @param $title
      * @param $message
      */
-    function toast_message($title, $message)
+    function toast_message($message)
     {
-        session()->flash('toast.title', $title);
+        session()->flash('toast.title', 'Information');
         session()->flash('toast.message', $message);
     }
 }
