@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Contact;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -21,9 +20,14 @@ class CreateContactsTable extends Migration
             $table->string('subject', 255);
             $table->string('phone')->nullable();
             $table->text('message');
-            $table->string('type')->default(Contact::GLOBAL);
             $table->boolean('viewed')->default(false);
+            $table->unsignedInteger('domain_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('domain_id')
+                ->references('id')
+                ->on('domains')
+                ->onDelete('cascade');
         });
     }
 

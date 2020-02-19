@@ -21,7 +21,8 @@ class CreateAnswersTable extends Migration
 
             $table->foreign('contact_id')
                 ->references('id')
-                ->on('contacts');
+                ->on('contacts')
+                ->onDelete('cascade');
         });
     }
 

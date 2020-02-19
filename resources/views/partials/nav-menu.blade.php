@@ -1,4 +1,8 @@
-@php $user = \Illuminate\Support\Facades\Auth::user(); @endphp
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+    $contactService = new \App\Services\ContactService();
+    $contactsNumber = $contactService->getContactsNumber();
+@endphp
 <div class="navbar-right">
     <ul class="nav navbar-nav">
         <li class="dropdown notifications-menu">
@@ -9,7 +13,7 @@
             </button>
             <!-- Notifications area -->
             <ul class="dropdown-menu dropdown-menu-right">
-                <li class="dropdown-header">0 nouvelles notifications</li>
+                <li class="m-3"></li>
                 <li>
                     <a href="#">
                         <i class="mdi mdi-account-plus"></i> notification
@@ -23,21 +27,32 @@
         </li>
         <li class="dropdown notifications-menu">
             <button class="dropdown-toggle" data-toggle="dropdown">
-                <i class="mdi mdi-email-open-outline"></i>
-                {{--<i class="mdi mdi-email text-danger"></i>
-                <small class="very-small">(2)</small>--}}
+                @if($contactsNumber === 0)
+                    <i class="mdi mdi-email-open-outline"></i>
+                @else
+                    <i class="mdi mdi-email text-danger"></i>
+                    <small class="very-small">({{ $contactsNumber }})</small>
+                @endif
             </button>
             <!-- Notifications area -->
             <ul class="dropdown-menu dropdown-menu-right">
-                <li class="dropdown-header">0 nouvelles notifications</li>
-                <li>
-                    <a href="#">
-                        <i class="mdi mdi-account-plus"></i> notification
-                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                    </a>
-                </li>
+                <li class="m-3"></li>
+                @foreach($contactService->getContacts() as $contact)
+                    <li>
+                        <a href="{{ route('admin.contacts.show', [$contact])  }}">
+                            <small>
+                                @if($contact->domain !== null)
+                                    <span class="mb-2 badge badge-primary">{{ text_format($contact->domain->name, 10) }}</span>
+                                @endif
+                                <span class="mb-2 badge badge-secondary">{{ text_format($contact->name, 10) }}</span>
+                            </small><br>
+                            {{ text_format($contact->subject, 20) }}
+                            <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> {{ $contact->created_date }}</span>
+                        </a>
+                    </li>
+                @endforeach
                 <li class="dropdown-footer">
-                    <a class="text-center" href="#">Tous voir</a>
+                    <a class="text-center" href="{{ route('admin.contacts.index') }}">Tous voir</a>
                 </li>
             </ul>
         </li>

@@ -118,6 +118,13 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="{{ active_page(collect('admin.contacts.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.contacts.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-email-open-outline"></i> Méssages
+                                    </span>
+                                </a>
+                            </li>
                         </div>
                     </ul>
                 </li>

@@ -51,9 +51,12 @@ Route::prefix('admin')->group(function() {
         Route::get('settings', 'SettingController@index')->name('admin.settings.index');
         Route::post('settings', 'SettingController@update')->name('admin.settings.update');
         // Contact
-        Route::resource('contacts', 'ContactController', ['only' => ['index', 'destroy']]);
-        Route::get('contacts/viewed', 'ContactController@viewed')->name('messages.contacts');
-        Route::post('contacts/answer/{contact}', 'ContactController@answer')->name('contacts.answer');
+        Route::resource('contacts', 'ContactController', [
+            'only' => ['index', 'show', 'destroy'],
+            'names' => ['index' => 'admin.contacts.index', 'show' => 'admin.contacts.show',
+                'destroy' => 'admin.contacts.destroy']
+        ]);
+        Route::post('contacts/answer/{contact}', 'ContactController@answer')->name('admin.contacts.answer');
         // ...
         Route::resource('domains', 'DomainController', [
             'names' => ['index' => 'admin.domains.index', 'create' => 'admin.domains.create',

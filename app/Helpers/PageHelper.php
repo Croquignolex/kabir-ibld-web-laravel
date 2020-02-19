@@ -126,6 +126,7 @@ if(!function_exists('admin_tools_pages'))
      */
     function admin_tools_pages()
     {
-        return collect(['admin.countries.index', 'admin.settings.index']);
+        return collect(['admin.countries.index', 'admin.settings.index',
+            'admin.contacts.index', 'admin.contacts.show']);
     }
 }

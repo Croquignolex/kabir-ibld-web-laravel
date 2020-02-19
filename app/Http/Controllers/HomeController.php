@@ -47,7 +47,7 @@ class HomeController extends Controller
         }
 
         Contact::create($request->all());
-        toast_message('Message envoyé avec succès');
+        toast_message('Méssage envoyé avec succès');
         return redirect($returnRoute);
     }
 }
