@@ -12,47 +12,14 @@
         </div>
 
         <div class="row">
-            @component('components.landing.service', [
-                'icon' => 'gem',
-                'title' => 'Service 1',
-                'description' => 'Explication du service 1.'
-            ])
-            @endcomponent
-
-            @component('components.landing.service', [
-                'icon' => 'code',
-                'title' => 'Service 2',
-                'description' => 'Explication du service 2.'
-            ])
-            @endcomponent
-
-            @component('components.landing.service', [
-                'icon' => 'home',
-                'title' => 'Service 3',
-                'description' => 'Explication du service 3.'
-            ])
-            @endcomponent
-
-            @component('components.landing.service', [
-                'icon' => 'leaf',
-                'title' => 'Service 4',
-                'description' => 'Explication du service 4.'
-            ])
-            @endcomponent
-
-            @component('components.landing.service', [
-                'icon' => 'cogs',
-                'title' => 'Service 5',
-                'description' => 'Explication du service 5.'
-            ])
-            @endcomponent
-
-            @component('components.landing.service', [
-                'icon' => 'bug',
-                'title' => 'Service 6',
-                'description' => 'Explication du service 6.'
-            ])
-            @endcomponent
+            @foreach($services as $service)
+                @component('components.landing.service', [
+                    'icon' => $service->icon,
+                    'title' => $service->name,
+                    'description' => $service->description
+                ])
+                @endcomponent
+            @endforeach
         </div>
     </div>
 </section>

@@ -1,13 +1,8 @@
-@if(session()->has('popup.message'))
+@if(session()->has('toast.message'))
     <script>
-        notification(
-            "{{ session('popup.title') }}",
-            "{{ session('popup.message') }}",
-            "{{ session('popup.type') }}",
-            "{{ session('popup.icon') }}",
-            "{{ session('popup.animate.enter') }}",
-            "{{ session('popup.animate.exit') }}",
-            "{{ session('popup.delay') }}"
+        callToaster(
+            "{{ session('toast.title') }}",
+            "{{ session('toast.message') }}"
         );
     </script>
 @endif

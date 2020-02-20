@@ -29,10 +29,10 @@
             <div class="col-lg-3 col-md-4">
                 <ul class="footer-link list-unstyled ml-0 justify-content-end">
                     <li>
-                        <i class="fa fa-mobile"></i> +345-345456
+                        <i class="fa fa-mobile"></i> {{ $setting->phone }}
                     </li>
                     <li>
-                        <i class="fa fa-location-arrow"></i> Toronto, CANADA
+                        <i class="fa fa-location-arrow"></i> {{ $setting->town }}
                     </li>
                 </ul>
             </div>

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
 @section('master.title', page_title('Accueil'))
+@section('master.body.id', 'page-top')
 
 @push('master.style')
-    <link rel="stylesheet" href="{{ css_asset('all') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('landing') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('landing-responsive') }}" type="text/css">
@@ -42,9 +42,7 @@
 @endsection
 
 @push('master.script')
-    <script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('bootstrap.bundle.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.easing.min') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('ajax-contact') }}" type="text/javascript"></script>
     <script src="{{ js_asset('landing') }}" type="text/javascript"></script>
 @endpush
