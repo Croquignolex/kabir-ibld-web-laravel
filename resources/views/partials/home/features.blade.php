@@ -12,33 +12,14 @@
 
         {{--Features--}}
         <div class="row justy-content-center">
-            @component('components.landing.feature', [
-                'icon' => 'gem',
-                'title' => 'Domaine 1',
-                'description' => 'Explication du domaine 1.'
-            ])
-            @endcomponent
-
-            @component('components.landing.feature', [
-                'icon' => 'dice',
-                'title' => 'Domaine 2',
-                'description' => 'Explication du domaine 2.'
-            ])
-            @endcomponent
-
-            @component('components.landing.feature', [
-                'icon' => 'anchor',
-                'title' => 'Domaine 3',
-                'description' => 'Explication du domaine 3.'
-            ])
-            @endcomponent
-
-            @component('components.landing.feature', [
-                'icon' => 'clock',
-                'title' => 'Domaine 4',
-                'description' => 'Explication du domaine 4.'
-            ])
-            @endcomponent
+            @foreach($domains as $domain)
+                @component('components.landing.feature', [
+                    'icon' => $domain->icon,
+                    'title' => $domain->name,
+                    'description' => $domain->description
+                ])
+                @endcomponent
+            @endforeach
         </div>
     </div>
 </section>

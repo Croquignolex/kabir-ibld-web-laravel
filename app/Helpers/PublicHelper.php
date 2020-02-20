@@ -70,7 +70,7 @@ if(!function_exists('css_app_asset'))
      */
     function css_app_asset($css_file)
     {
-        return css_asset($css_file, '/app/');
+        return css_asset($css_file, 'app/');
     }
 }
 
@@ -83,7 +83,7 @@ if(!function_exists('js_app_asset'))
      */
     function js_app_asset($js_file)
     {
-        return js_asset($js_file, '/app/');
+        return js_asset($js_file, 'app/');
     }
 }
 
@@ -96,7 +96,7 @@ if(!function_exists('css_admin_asset'))
      */
     function css_admin_asset($css_file)
     {
-        return css_asset($css_file, '/admin/');
+        return css_asset($css_file, 'admin/');
     }
 }
 
@@ -109,7 +109,7 @@ if(!function_exists('js_admin_asset'))
      */
     function js_admin_asset($js_file)
     {
-        return js_asset($js_file, '/admin/');
+        return js_asset($js_file, 'admin/');
     }
 }
 
@@ -121,6 +121,6 @@ if(!function_exists('favicon_img_asset'))
      */
     function favicon_img_asset($favicon)
     {
-        return img_asset($favicon, 'png', '/favicon/');
+        return img_asset($favicon, 'png', 'favicon/');
     }
 }

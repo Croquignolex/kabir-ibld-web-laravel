@@ -73,13 +73,60 @@ if(!function_exists('seo_description'))
     }
 }
 
-if(!function_exists('about_pages'))
+if(!function_exists('dashboard_pages'))
 {
     /**
      * @return Collection
      */
-    function about_pages()
+    function dashboard_pages()
     {
-        return collect(['about']);
+        return collect(['dashboard']);
+    }
+}
+
+if(!function_exists('admin_dashboard_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_dashboard_pages()
+    {
+        return collect(['admin.dashboard']);
+    }
+}
+
+if(!function_exists('admin_domain_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_domain_pages()
+    {
+        return collect(['admin.domains.index', 'admin.domains.create',
+            'admin.domains.edit', 'admin.domains.show']);
+    }
+}
+
+if(!function_exists('admin_service_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_service_pages()
+    {
+        return collect(['admin.services.index', 'admin.services.create',
+            'admin.services.edit', 'admin.services.show']);
+    }
+}
+
+if(!function_exists('admin_tools_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_tools_pages()
+    {
+        return collect(['admin.countries.index', 'admin.settings.index',
+            'admin.contacts.index', 'admin.contacts.show']);
     }
 }

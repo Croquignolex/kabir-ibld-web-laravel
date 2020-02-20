@@ -11,41 +11,64 @@
         {{--Form section--}}
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <form method="get" id="main_contact_form" class="contact__form">
-                    <!-- form message -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                Your message was sent successfully.
-                            </div>
-                        </div>
-                    </div>
+                <form action="{{ route('contact') }}" method="POST" id="main_contact_form" class="contact__form">
+                    {{ csrf_field() }}
                     <!-- end message -->
-
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Votre nom">
+                                <label for="name">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('name') }}
+                                        </span>
+                                    @endif
+                                </label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                       placeholder="Votre nom *" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Votre adresse email *" required="required">
+                                <label for="email">
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('email') }}
+                                        </span>
+                                    @endif
+                                </label>
+                                <input type="text" name="email" id="email" class="form-control"
+                                       placeholder="Votre adresse email *" value="{{ old('email') }}">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Sujet *" required="required">
+                                <label for="subject">
+                                    @if ($errors->has('subject'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('subject') }}
+                                        </span>
+                                    @endif
+                                </label>
+                                <input type="text" name="subject" id="subject" class="form-control"
+                                       placeholder="Sujet *" value="{{ old('subject') }}">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <textarea name="message" id="message" cols="30" rows="6" class="form-control" placeholder="Votre message" required="required" ></textarea>
+                                <label for="message">
+                                    @if ($errors->has('message'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('message') }}
+                                        </span>
+                                    @endif
+                                </label>
+                                <textarea name="message" id="message" cols="30" rows="6" class="form-control"
+                                          placeholder="Votre message *">{{ old('message') }}</textarea>
                             </div>
                         </div>
-
                         <div class="col-lg-12">
                             <div class="submit text-center">
                                 <input name="submit" type="submit" class="btn btn-primary btn-lg" value="Envoyer">
