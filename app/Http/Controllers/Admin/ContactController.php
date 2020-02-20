@@ -28,8 +28,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        // todo: make this messages as view
         $contacts = Contact::all();
+        foreach ($contacts as $contact) $contact->update(['viewed' => true]);
         return view('admin.contact.index', compact('contacts'));
     }
 
@@ -40,7 +40,7 @@ class ContactController extends Controller
      */
     public function show(Request $request, Contact $contact)
     {
-        // todo: make this message as view
+        $contact->update(['viewed' => true]);
         return view('admin.contact.show', compact('contact'));
     }
 
@@ -82,7 +82,6 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        // todo: manage this in the views
         $contact->delete();
         toast_message('Méssage  supprimé avec succès');
         return redirect(route('admin.contacts.index'));

@@ -2,7 +2,7 @@
     'layout' => 'admin',
     'breadcrumb_name' => 'Domaines',
     'breadcrumb_icon' => 'mdi mdi-folder-search-outline',
-    'breadcrumb_chain' => ['Domaines', 'Tous les domaines']
+    'breadcrumb_chain' => ['Domaines']
 ])
 
 @section('app.master.title', page_title('Tous les domaines'))

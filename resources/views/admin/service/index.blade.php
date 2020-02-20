@@ -2,7 +2,7 @@
     'layout' => 'admin',
     'breadcrumb_name' => 'Services',
     'breadcrumb_icon' => 'mdi mdi-database-search',
-    'breadcrumb_chain' => ['Services', 'Tous les services']
+    'breadcrumb_chain' => ['Services']
 ])
 
 @section('app.master.title', page_title('Tous les services'))

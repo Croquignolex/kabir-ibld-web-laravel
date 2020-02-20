@@ -38,7 +38,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <li class="m-3"></li>
                 @foreach($contactService->getContacts() as $contact)
-                    <li>
+                    <li class="{{ $contact->viewed ? '' : 'bg-light' }}">
                         <a href="{{ route('admin.contacts.show', [$contact])  }}">
                             <small>
                                 @if($contact->domain !== null)

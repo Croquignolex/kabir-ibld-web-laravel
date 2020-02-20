@@ -1,11 +1,12 @@
 @extends('layouts.app', [
     'layout' => 'admin',
-    'breadcrumb_name' => 'Pays',
-    'breadcrumb_icon' => 'mdi mdi-map',
-    'breadcrumb_chain' => ['Outils', 'Pays']
+    'breadcrumb_name' => 'Méssages',
+    'breadcrumb_icon' => 'mdi mdi-email-open-outline',
+    'breadcrumb_chain' => ['Outils', 'Méssages']
 ])
 
-@section('app.master.title', page_title('Tous les pays'))
+
+@section('app.master.title', page_title('Méssages'))
 
 @push('app.master.style')
     <link rel="stylesheet" href="{{ css_asset('datatables.bootstrap4.min') }}" type="text/css">
@@ -17,7 +18,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>List des pays</h2>
+                    <h2>Tous les méssages</h2>
                 </div>
                 <!-- Table -->
                 <div class="card-body">
@@ -25,21 +26,36 @@
                         <table id="responsive-data-table" class="table dt-responsive nowrap table-bordered table-hover" style="width:100%">
                             <thead class="bg-primary">
                                 <tr>
-                                    <th class="text-white">Code</th>
-                                    <th class="text-white">Alpha 2</th>
-                                    <th class="text-white">Alpha 3</th>
-                                    <th class="text-white">Nom en Anglais</th>
-                                    <th class="text-white">Nom en Francais </th>
+                                    <th class="text-white">Nom</th>
+                                    <th class="text-white">Email</th>
+                                    <th class="text-white">Sujet</th>
+                                    <th class="text-white">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($countries as $country)
+                                @foreach($contacts as $contact)
                                     <tr>
-                                        <td>{{ $country->code }}</td>
-                                        <td>{{ $country->alpha_2 }}</td>
-                                        <td>{{ $country->alpha_3 }}</td>
-                                        <td>{{ $country->en_name }}</td>
-                                        <td>{{ $country->fr_name }}</td>
+                                        <td>{{ $contact->name }}</td>
+                                        <td>{{ $contact->email }}</td>
+                                        <td>{{ $contact->subject }}</td>
+                                        <td class="text-right">
+                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.contacts.show', [$contact]) }}">
+                                                <i class="mdi mdi-eye-outline"></i>
+                                                Détails
+                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#delete-modal-{{ $contact->id }}">
+                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                Supprimer
+                                            </button>
+                                        </td>
+                                        @component('components.delete-modal', [
+                                            'id' => 'delete-modal-' . $contact->id,
+                                            'title' => 'Supprimer le méssage de ' . $contact->name,
+                                            'message' => 'Vous ne pourrez plus consulter ce méssage, êtes vous sûr?',
+                                            'route' => route('admin.contacts.destroy', [$contact])
+                                        ])
+                                        @endcomponent
                                     </tr>
                                 @endforeach
                             </tbody>
