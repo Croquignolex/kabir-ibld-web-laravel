@@ -34,11 +34,10 @@ class ContactController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Contact $contact
      * @return Factory|View
      */
-    public function show(Request $request, Contact $contact)
+    public function show(Contact $contact)
     {
         $contact->update(['viewed' => true]);
         return view('admin.contact.show', compact('contact'));
@@ -83,7 +82,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        toast_message('Méssage  supprimé avec succès');
+        toast_message('Méssage supprimé avec succès');
         return redirect(route('admin.contacts.index'));
     }
 }

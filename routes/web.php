@@ -51,28 +51,28 @@ Route::prefix('admin')->group(function() {
         Route::get('settings', 'SettingController@index')->name('admin.settings.index');
         Route::post('settings', 'SettingController@update')->name('admin.settings.update');
         // Contact
-        Route::resource('contacts', 'ContactController', [
-            'only' => ['index', 'show', 'destroy'],
-            'names' => ['index' => 'admin.contacts.index', 'show' => 'admin.contacts.show',
-                'destroy' => 'admin.contacts.destroy']
-        ]);
         Route::post('contacts/answer/{contact}', 'ContactController@answer')->name('admin.contacts.answer');
+        Route::resource('contacts', 'ContactController')->only('index', 'show', 'destroy')->names([
+            'show' => 'admin.contacts.show', 'index' => 'admin.contacts.index',
+            'destroy' => 'admin.contacts.destroy'
+        ]);
         // ...
-        Route::resource('domains', 'DomainController', [
-            'names' => ['index' => 'admin.domains.index', 'create' => 'admin.domains.create',
-                'store' => 'admin.domains.store', 'show' => 'admin.domains.show',
-                'edit' => 'admin.domains.edit', 'update' => 'admin.domains.update',
-                'destroy' => 'admin.domains.destroy']
+        Route::resource('domains', 'DomainController')->names([
+            'destroy' => 'admin.domains.destroy', 'store' => 'admin.domains.store',
+            'update' => 'admin.domains.update', 'index' => 'admin.domains.index',
+            'show' => 'admin.domains.show', 'edit' => 'admin.domains.edit',
+            'create' => 'admin.domains.create',
         ]);
-        Route::resource('services', 'ServiceController', [
-            'names' => ['index' => 'admin.services.index', 'create' => 'admin.services.create',
-                'store' => 'admin.services.store', 'show' => 'admin.services.show',
-                'edit' => 'admin.services.edit', 'update' => 'admin.services.update',
-                'destroy' => 'admin.services.destroy']
+        Route::resource('services', 'ServiceController')->names([
+            'index' => 'admin.services.index', 'create' => 'admin.services.create',
+            'edit' => 'admin.services.edit', 'update' => 'admin.services.update',
+            'store' => 'admin.services.store', 'show' => 'admin.services.show',
+            'destroy' => 'admin.services.destroy'
         ]);
-        Route::resource('countries', 'CountryController', [
-            'only' => ['index'],
-            'names' => ['index' => 'admin.countries.index']
+        Route::resource('countries', 'CountryController')->except('show')->names([
+            'store' => 'admin.countries.store', 'destroy' => 'admin.countries.destroy',
+            'index' => 'admin.countries.index', 'create' => 'admin.countries.create',
+            'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
         ]);
     });
 });

@@ -104,7 +104,7 @@
                     </a>
                     <ul class="collapse {{ active_page(admin_tools_pages(), 'expend') }}" id="tool" data-parent="#sidebar-menu">
                         <div class="sub-menu">
-                            <li class="{{ active_page(collect('admin.countries.index')) }}">
+                            <li class="{{ active_page(collect('admin.settings.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('admin.settings.index') }}">
                                     <span class="nav-text">
                                         <i class="mdi mdi-information-outline"></i> Informations du site
@@ -114,7 +114,7 @@
                             <li class="{{ active_page(collect('admin.countries.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('admin.countries.index') }}">
                                     <span class="nav-text">
-                                        <i class="mdi mdi-map"></i> Pays
+                                        <i class="mdi mdi-flag"></i> Pays
                                     </span>
                                 </a>
                             </li>
