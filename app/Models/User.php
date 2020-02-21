@@ -11,32 +11,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * @property mixed id
  * @property mixed role
- * @property string city
- * @property mixed image
- * @property string phone
- * @property string token
- * @property string address
- * @property string country
- * @property mixed extension
- * @property string post_code
- * @property mixed authorised
- * @property mixed currencies
- * @property string avatar_src
- * @property mixed is_factored
- * @property string profession
- * @property bool is_confirmed
- * @property string description
- * @property mixed user_settings
  * @property mixed password_reset
- * @property mixed format_full_name
+ * @property mixed first_name
+ * @property mixed last_name
  * @property mixed format_last_name
  * @property mixed format_first_name
- * @property array|null|string email
- * @property array|null|string password
- * @property array|null|string last_name
- * @property array|null|string first_name
+ * @property mixed image
  */
 class User extends Authenticatable
 {

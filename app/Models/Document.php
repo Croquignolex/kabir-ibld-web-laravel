@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Contact extends Model
+/**
+ * @property mixed extension
+ */
+class Document extends Model
 {
     use LocaleDateTimeTrait;
 
@@ -17,16 +19,8 @@ class Contact extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'subject', 'message', 'viewed', 'domain_id'
+        'code', 'name', 'file', 'extension', 'description',  'domain_id'
     ];
-
-    /**
-     * @return HasMany
-     */
-    public function answers()
-    {
-        return $this->hasMany('App\Models\Answer');
-    }
 
     /**
      * @return BelongsTo
@@ -34,5 +28,13 @@ class Contact extends Model
     public function domain()
     {
         return $this->belongsTo('App\Models\Domain');
+    }
+
+    /**
+     * @return string
+     */
+    public function getSrcAttribute()
+    {
+        return img_asset($this->extension, 'PNG', 'icons/');
     }
 }

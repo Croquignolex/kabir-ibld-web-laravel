@@ -74,5 +74,11 @@ Route::prefix('admin')->group(function() {
             'index' => 'admin.countries.index', 'create' => 'admin.countries.create',
             'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
         ]);
+        Route::resource('documents', 'DocumentController')->names([
+            'store' => 'admin.documents.store', 'destroy' => 'admin.documents.destroy',
+            'index' => 'admin.documents.index', 'create' => 'admin.documents.create',
+            'edit' => 'admin.documents.edit', 'update' => 'admin.documents.update',
+            'show' => 'admin.documents.show'
+        ]);
     });
 });

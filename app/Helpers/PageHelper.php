@@ -95,6 +95,18 @@ if(!function_exists('admin_dashboard_pages'))
     }
 }
 
+if(!function_exists('admin_document_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_document_pages()
+    {
+        return collect(['admin.documents.index', 'admin.documents.create',
+            'admin.documents.edit', 'admin.documents.show']);
+    }
+}
+
 if(!function_exists('admin_domain_pages'))
 {
     /**

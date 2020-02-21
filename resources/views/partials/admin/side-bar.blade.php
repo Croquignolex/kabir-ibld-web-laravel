@@ -39,6 +39,34 @@
                         </div>
                     </ul>
                 </li>
+                <!-- Document -->
+                <li class="has-sub expand {{ active_page(admin_document_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#document"
+                       aria-expanded="false" aria-controls="document">
+                        <i class="mdi mdi-file-document-box-multiple-outline"></i>
+                        <span class="nav-text">Documents</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(admin_document_pages(), 'expend') }}" id="document" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('admin.documents.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.documents.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-file-find-outline"></i>
+                                        Tous les documents
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('admin.documents.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.documents.create') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-file-upload-outline"></i>
+                                        Ajouter un document
+                                    </span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
                 <!-- Domain -->
                 <li class="has-sub expand {{ active_page(admin_domain_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#domain"

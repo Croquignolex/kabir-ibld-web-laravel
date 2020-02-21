@@ -32,4 +32,12 @@ class Domain extends Authenticatable
     {
         return $this->hasMany('App\Models\Contact');
     }
+
+    /**
+     * @return HasMany
+     */
+    public function documents()
+    {
+        return $this->hasMany('App\Models\Document');
+    }
 }
