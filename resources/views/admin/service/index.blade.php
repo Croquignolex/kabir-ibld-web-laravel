@@ -21,15 +21,32 @@
                             <div class="card">
                                 <div class="card-header" id="heading{{ $service->id }}">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ $service->id }}" aria-expanded="{{ $loop->index == 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $service->id }}">
-                                        <strong>{{ $service->name }}</strong>
+                                        <strong><i class="{{ $service->icon }}"></i> {{ $service->name }}</strong>
                                     </button>
                                 </div>
                                 <div id="collapse{{ $service->id }}" class="collapse {{ $loop->index == 0 ? 'show' : '' }}" aria-labelledby="heading{{ $service->id }}" data-parent="#services">
                                     <div class="card-body">
                                         <p>{{ $service->description }}</p>
+                                        <p class="text-right">
+                                            <a class="btn btn-warning btn-sm text-white" title="Modifier"
+                                               href="{{ route('admin.services.edit', [$service]) }}">
+                                                <i class="mdi mdi-square-edit-outline"></i>
+                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
+                                                    data-target="#delete-modal-{{ $service->id }}">
+                                                <i class="mdi mdi-trash-can-outline"></i>
+                                            </button>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                            @component('components.delete-modal', [
+                                'id' => 'delete-modal-' . $service->id,
+                                'title' => 'Supprimer ' . $service->name,
+                                'message' => 'Vous ne pourrez plus consulter ce service, êtes vous sûr?',
+                                'route' => route('admin.services.destroy', [$service])
+                            ])
+                            @endcomponent
                         @endforeach
                     </div>
                 </div>
