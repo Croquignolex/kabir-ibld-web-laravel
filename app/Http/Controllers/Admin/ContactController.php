@@ -28,7 +28,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::all()->sortByDesc('created_at');
         foreach ($contacts as $contact) $contact->update(['viewed' => true]);
         return view('admin.contact.index', compact('contacts'));
     }

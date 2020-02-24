@@ -23,7 +23,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        $domains = Domain::all();
+        $domains = Domain::all()->sortByDesc('created_at');
         return view('admin.domain.index', compact('domains'));
     }
 

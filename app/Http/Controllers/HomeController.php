@@ -21,8 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $domains = Domain::all();
-        $services = Service::all();
+        $domains = Domain::all()->sortByDesc('created_at');
+        $services = Service::all()->sortByDesc('created_at');
         $setting = Setting::all()->first();
         return view('home', compact('domains', 'services', 'setting'));
     }

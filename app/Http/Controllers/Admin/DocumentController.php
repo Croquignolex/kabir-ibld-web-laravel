@@ -27,7 +27,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents = Document::all();
+        $documents = Document::all()->sortByDesc('created_at');
         return view('admin.document.index', compact('documents'));
     }
 

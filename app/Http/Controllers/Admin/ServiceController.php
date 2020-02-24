@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ServiceRequest;
-use App\Models\Service;
 use Exception;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
+use App\Models\Service;
 use Illuminate\View\View;
+use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\ServiceRequest;
 use Illuminate\Contracts\View\Factory;
 
 class ServiceController extends Controller
@@ -26,7 +26,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
+        $services = Service::all()->sortByDesc('created_at');
         return view('admin.service.index', compact('services'));
     }
 
@@ -39,23 +39,14 @@ class ServiceController extends Controller
     }
 
     /**
-     * @param CountryRequest $request
+     * @param ServiceRequest $request
      * @return RedirectResponse|Redirector
      */
-    public function store(CountryRequest $request)
+    public function store(ServiceRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'code' => 'required|numeric|min:0|unique:countries',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect(route('admin.countries.create'))
-                ->withErrors($validator)->withInput();
-        }
-
-        Country::create($request->all());
-        toast_message('Pays enrégistré avec succès');
-        return redirect(route('admin.countries.index'));
+        Service::create($request->all());
+        toast_message('Service enrégistré avec succès');
+        return redirect(route('admin.services.index'));
     }
 
     /**
