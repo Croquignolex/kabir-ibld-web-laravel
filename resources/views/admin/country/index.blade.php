@@ -42,14 +42,13 @@
                                         <td>{{ $country->en_name }}</td>
                                         <td>{{ $country->fr_name }}</td>
                                         <td class="text-right">
-                                            <a class="btn btn-warning btn-sm text-white" href="{{ route('admin.countries.edit', [$country]) }}">
+                                            <a class="btn btn-warning btn-sm text-white" title="Modifier"
+                                               href="{{ route('admin.countries.edit', [$country]) }}">
                                                 <i class="mdi mdi-square-edit-outline"></i>
-                                                Modifier
                                             </a>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
                                                     data-target="#delete-modal-{{ $country->id }}">
                                                 <i class="mdi mdi-trash-can-outline"></i>
-                                                Supprimer
                                             </button>
                                         </td>
                                         @component('components.delete-modal', [

@@ -63,11 +63,10 @@ Route::prefix('admin')->group(function() {
             'show' => 'admin.domains.show', 'edit' => 'admin.domains.edit',
             'create' => 'admin.domains.create',
         ]);
-        Route::resource('services', 'ServiceController')->names([
+        Route::resource('services', 'ServiceController')->except('show')->names([
+            'store' => 'admin.services.store', 'destroy' => 'admin.services.destroy',
             'index' => 'admin.services.index', 'create' => 'admin.services.create',
             'edit' => 'admin.services.edit', 'update' => 'admin.services.update',
-            'store' => 'admin.services.store', 'show' => 'admin.services.show',
-            'destroy' => 'admin.services.destroy'
         ]);
         Route::resource('countries', 'CountryController')->except('show')->names([
             'store' => 'admin.countries.store', 'destroy' => 'admin.countries.destroy',

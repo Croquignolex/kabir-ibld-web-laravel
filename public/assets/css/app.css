@@ -8282,11 +8282,11 @@ button {
     padding-bottom: 20px; }
 .card-default .card-header-border-bottom h2 {
     margin-bottom: 0; }
-.card-default .card-body {
-    padding: 1.88rem 1.88rem; }
-@media (min-width: 1500px) {
+/*.card-default .card-body {
+    padding: 1.88rem 1.88rem; }*/
+/*@media (min-width: 1500px) {
     .card-default .card-body {
-        padding: 3.125rem; } }
+        padding: 3.125rem; } }*/
 .card-default .card-body p {
     line-height: 1.5; }
 .card-default .card-footer {

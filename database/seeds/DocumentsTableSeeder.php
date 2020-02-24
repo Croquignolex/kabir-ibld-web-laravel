@@ -14,18 +14,13 @@ class DocumentsTableSeeder extends Seeder
      */
     public function run()
     {
-        $doc_types = ['doc', 'jpg', 'pdf', 'png', 'ppt', 'txt', 'xls', 'zip'];
-
-        foreach ($doc_types as $doc_type)
-        {
-            Document::create([
-                'extension' => $doc_type,
-                'name' => Lorem::word(),
-                'code' => Str::random(16),
-                'file' => Str::random(16),
-                'description' => Lorem::sentence(),
-                'domain_id' => 1
-            ]);
-        }
+        Document::create([
+            'extension' => 'pdf',
+            'name' => 'Document de test',
+            'code' => 'FGD2020KZOP546H',
+            'file' => 'fQ0rLkQVMm86pqAyQVytyLghmgGxZVqRSubymU6o',
+            'description' => 'Juste un document de test a supprimer à tout moment',
+            'domain_id' => 1
+        ]);
     }
 }

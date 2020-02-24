@@ -35,6 +35,6 @@ class Document extends Model
      */
     public function getSrcAttribute()
     {
-        return img_asset($this->extension, 'PNG', 'icons/');
+        return img_asset($this->extension, 'png', 'icons/');
     }
 }

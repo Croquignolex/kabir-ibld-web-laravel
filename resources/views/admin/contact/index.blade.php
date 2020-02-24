@@ -23,6 +23,7 @@
                                     <th class="text-white">Nom</th>
                                     <th class="text-white">Email</th>
                                     <th class="text-white">Sujet</th>
+                                    <th class="text-white">Domaine</th>
                                     <th class="text-white">Actions</th>
                                 </tr>
                             </thead>
@@ -32,15 +33,21 @@
                                         <td>{{ $contact->name }}</td>
                                         <td>{{ $contact->email }}</td>
                                         <td>{{ $contact->subject }}</td>
+                                        <td>
+                                            @if($contact->domain !== null)
+                                                <a href="{{ route('admin.domains.show', [$contact->domain]) }}">
+                                                    <span class="badge badge-primary">{{ $contact->domain->name }}</span>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td class="text-right">
-                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.contacts.show', [$contact]) }}">
+                                            <a class="btn btn-primary btn-sm" title="Détails"
+                                               href="{{ route('admin.contacts.show', [$contact]) }}">
                                                 <i class="mdi mdi-eye-outline"></i>
-                                                Détails
                                             </a>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
                                                     data-target="#delete-modal-{{ $contact->id }}">
                                                 <i class="mdi mdi-trash-can-outline"></i>
-                                                Supprimer
                                             </button>
                                         </td>
                                         @component('components.delete-modal', [
