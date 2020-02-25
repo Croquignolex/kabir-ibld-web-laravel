@@ -73,7 +73,7 @@
                                         <label class="control control-radio">
                                             <i class="{{ $icon }}"></i>
                                             <input type="radio" name="icon" value="{{ $icon }}"
-                                                {{ $icon === (old('name') ?? $service->icon) ? 'checked' : '' }}
+                                                {{ $icon == (old('name') ?? $service->icon) ? 'checked' : '' }}
                                             />
                                             <div class="control-indicator"></div>
                                         </label>
