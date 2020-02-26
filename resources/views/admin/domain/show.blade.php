@@ -60,9 +60,7 @@
                                 @include('partials.admin.contributors-card', ['contributors' => $domain->contributors, 'domain_page' => true])
                             </div>
                             <div class="tab-pane pt-3 fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                @include('partials.admin.documents-card', ['documents' => $domain->documents, 'domain_page' => true])
                             </div>
                             <div class="tab-pane pt-3 fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
                                 @include('partials.admin.contacts-table', ['contacts' => $domain->contacts, 'domain_page' => true])

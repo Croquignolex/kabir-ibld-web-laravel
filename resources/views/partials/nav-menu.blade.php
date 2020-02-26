@@ -78,7 +78,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="mdi mdi-settings"></i> Paramètres
+                        <i class="mdi mdi-settings"></i> Gérer les utilisateurs
                     </a>
                 </li>
                 <li class="dropdown-footer">

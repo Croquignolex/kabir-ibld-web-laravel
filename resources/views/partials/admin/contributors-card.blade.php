@@ -47,7 +47,7 @@
         @component('components.delete-modal', [
             'id' => 'delete-contributor-modal-' . $contributor->id,
             'title' => 'Supprimer ' . $contributor->name,
-            'message' => 'Vous ne pourrez plus consulter ce domaine, les documents, les intervenants et les messages associés, êtes vous sûr?',
+            'message' => 'Vous ne pourrez plus consulter cet intervenant, les documents, les intervenants et les messages associés, êtes vous sûr?',
             'route' => route('admin.contributors.destroy', [$contributor])
         ])
         @endcomponent

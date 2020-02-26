@@ -6,8 +6,6 @@ use App\Traits\FileManageTrait;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @property mixed extension
@@ -16,6 +14,8 @@ use Illuminate\Support\Str;
 class Contributor extends Model
 {
     use LocaleDateTimeTrait, FileManageTrait;
+
+    const FOLDER = 'contributors';
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +33,7 @@ class Contributor extends Model
     {
         parent::boot();
         static::deleting(function ($contributor) {
-            (new self)->deleteFile($contributor, 'contributors');
+            (new self)->deleteFile($contributor, self::FOLDER);
         });
     }
 
@@ -50,6 +50,6 @@ class Contributor extends Model
      */
     public function getSrcAttribute()
     {
-        return img_asset($this->file, $this->extension, 'contributors/');
+        return img_asset($this->file, $this->extension, self::FOLDER . '/');
     }
 }

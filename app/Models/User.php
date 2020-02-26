@@ -25,6 +25,7 @@ class User extends Authenticatable
     use LocaleDateTimeTrait;
 
     const USER_DEFAULT_IMAGE = 'default';
+    const FOLDER = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -133,6 +134,6 @@ class User extends Authenticatable
         if(!file_exists(img_asset($this->file)))
             $this->update(['image' => self::USER_DEFAULT_IMAGE]);
 
-        return img_asset($this->file, $this->extension, 'users/');
+        return img_asset($this->file, $this->extension, self::FOLDER . '/');
     }
 }

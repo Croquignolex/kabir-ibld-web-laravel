@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Country;
-use App\Models\Document;
+use Exception;
 use App\Models\Domain;
+use App\Models\Document;
 use Illuminate\View\View;
+use App\Traits\FileManageTrait;
 use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CountryRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
+use App\Http\Requests\DocumentRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class DocumentController extends Controller
 {
+    use FileManageTrait;
+
     /**
      * CountryController constructor.
      */
@@ -40,61 +44,73 @@ class DocumentController extends Controller
             toast_message('Vous ne pouvez pas créer de documments sans domaine');
             return back();
         }
-        return view('admin.document.create');
+        return view('admin.document.create', compact('domains'));
     }
 
     /**
-     * @param CountryRequest $request
+     * @param DocumentRequest $request
      * @return RedirectResponse|Redirector
+     * @throws ValidationException
      */
-    public function store(CountryRequest $request)
+    public function store(DocumentRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'code' => 'required|numeric|min:0|unique:countries',
+            'code' => 'required|string|min:2|max:255|unique:documents',
+            'file' => 'required|max:10000'
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('admin.countries.create'))
-                ->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
-        Country::create($request->all());
-        toast_message('Pays enrégistré avec succès');
-        return redirect(route('admin.countries.index'));
+        $file = $this->storeFile($request, Document::FOLDER);
+
+        Document::create([
+            'file' =>  $file->name,
+            'extension' => $file->extension,
+            'name' => $request->input('name'),
+            'code' => $request->input('code'),
+            'domain_id' => $request->input('domain_id'),
+            'description' => $request->input('description'),
+        ]);
+
+        toast_message('Document enrégistré avec succès');
+        return redirect(route('admin.documents.index'));
     }
 
     /**
-     * @param Country $country
+     * @param Document $document
      * @return Factory|View
      */
-    public function edit(Country $country)
+    public function edit(Document $document)
     {
-        return view('admin.document.edit', compact('country'));
+        $domains = Domain::all()->sortByDesc('created_at');
+        return view('admin.document.edit', compact('document', 'domains'));
     }
 
     /**
-     * @param CountryRequest $request
-     * @param Country $country
+     * @param DocumentRequest $request
+     * @param Document $document
      * @return RedirectResponse|Redirector
      */
-    public function update(CountryRequest $request, Country $country)
+    public function update(DocumentRequest $request, Document $document)
     {
-        $country->update($request->except('code'));
-        toast_message('Pays modifié avec succès');
-        return redirect(route('admin.countries.index'));
+        $document->update($request->except(['code', 'file']));
+        toast_message('Document modifié avec succès');
+        return redirect(route('admin.documents.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Country $country
+     * @param Document $document
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
-    public function destroy(Country $country)
+    public function destroy(Document $document)
     {
-        $country->delete();
-        toast_message('Pays supprimé avec succès');
-        return redirect(route('admin.countries.index'));
+        $document->delete();
+        toast_message('Document supprimé avec succès');
+        return back();
     }
 }

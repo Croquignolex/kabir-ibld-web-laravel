@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FileManageTrait;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Document extends Model
 {
-    use LocaleDateTimeTrait;
+    use LocaleDateTimeTrait, FileManageTrait;
+
+    const FOLDER = 'documents';
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,17 @@ class Document extends Model
     protected $fillable = [
         'code', 'name', 'file', 'extension', 'description',  'domain_id'
     ];
+
+    /**
+     * Boot functions
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($document) {
+            (new self)->deleteFile($document, self::FOLDER);
+        });
+    }
 
     /**
      * @return BelongsTo
@@ -35,6 +49,6 @@ class Document extends Model
      */
     public function getSrcAttribute()
     {
-        return img_asset($this->extension, 'png', 'icons/');
+        return img_asset(mb_strtoupper($this->extension), 'png', 'icons/');
     }
 }

@@ -27,8 +27,12 @@ class Domain extends Authenticatable
     {
         parent::boot();
         static::deleting(function ($domain) {
+            // Delete contributors images
             foreach($domain->contributors as $contributor)
-                (new self)->deleteFile($contributor, 'contributors');
+                (new self)->deleteFile($contributor, Contributor::FOLDER);
+            // Delete documents files
+            foreach($domain->documents as $document)
+                (new self)->deleteFile($document, Document::FOLDER);
         });
     }
 

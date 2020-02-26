@@ -56,7 +56,7 @@ class ContributorController extends Controller
      */
     public function store(ContributorRequest $request)
     {
-        $file = $this->storeFile($request, 'contributors');
+        $file = $this->storeFile($request, Contributor::FOLDER);
 
         Contributor::create([
             'file' =>  $file->name,
@@ -91,7 +91,7 @@ class ContributorController extends Controller
      */
     public function update(ContributorRequest $request, Contributor $contributor)
     {
-        $file = $this->storeFile($request, 'contributors', $contributor);
+        $file = $this->storeFile($request, Contributor::FOLDER, $contributor);
 
         $contributor->update([
             'file' =>  $file->name,
@@ -119,6 +119,6 @@ class ContributorController extends Controller
     {
         $contributor->delete();
         toast_message('Service supprimé avec succès');
-        return redirect(route('admin.contributors.index'));
+        return back();
     }
 }

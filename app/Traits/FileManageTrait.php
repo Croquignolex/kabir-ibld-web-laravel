@@ -49,9 +49,9 @@ trait FileManageTrait
             }
             else
             {
-                toast_message('Erreur sur l\'extension de l\'image');
+                toast_message('Erreur sur l\'extension du fichier');
                 throw ValidationException::withMessages([
-                    'image' => "L'extension ne correspond pas, l'extension doit être dans cette liste ('jpg', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'pdf', 'png', 'PNG', 'ppt', 'pptx', 'txt', 'zip', 'xls', 'xlsx')",
+                    'file' => "L'extension ne correspond pas, l'extension doit être dans cette liste ('jpg', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'pdf', 'png', 'PNG', 'ppt', 'pptx', 'txt', 'zip', 'xls', 'xlsx')",
                 ])->status(423);
             }
         }
