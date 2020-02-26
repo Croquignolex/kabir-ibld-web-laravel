@@ -55,7 +55,7 @@ class ContactController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(back())->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
         try

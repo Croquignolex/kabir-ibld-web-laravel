@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        @foreach($documents as $document)
+                        @forelse($documents as $document)
                             <div class="col-sm-12 col-lg-6 col-xl-3 mb-2">
                                 <div class="card">
                                     <div class="card-body">
@@ -42,7 +42,13 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="text-center col-12">
+                                <div class="alert alert-primary text-primary" role="alert">
+                                    Pas de documents disponible
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

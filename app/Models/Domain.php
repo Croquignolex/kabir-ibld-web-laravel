@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\FileManageTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Domain extends Authenticatable
 {
+    use FileManageTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +19,18 @@ class Domain extends Authenticatable
     protected $fillable = [
         'description', 'name', 'icon', 'country_id'
     ];
+
+    /**
+     * Boot functions
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($domain) {
+            foreach($domain->contributors as $contributor)
+                (new self)->deleteFile($contributor, 'contributors');
+        });
+    }
 
     /**
      * @return BelongsTo
@@ -39,5 +54,13 @@ class Domain extends Authenticatable
     public function documents()
     {
         return $this->hasMany('App\Models\Document');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function contributors()
+    {
+        return $this->hasMany('App\Models\Contributor');
     }
 }

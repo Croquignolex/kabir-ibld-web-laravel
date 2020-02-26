@@ -73,11 +73,15 @@ Route::prefix('admin')->group(function() {
             'index' => 'admin.countries.index', 'create' => 'admin.countries.create',
             'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
         ]);
-        Route::resource('documents', 'DocumentController')->names([
+        Route::resource('documents', 'DocumentController')->except('show')->names([
             'store' => 'admin.documents.store', 'destroy' => 'admin.documents.destroy',
             'index' => 'admin.documents.index', 'create' => 'admin.documents.create',
             'edit' => 'admin.documents.edit', 'update' => 'admin.documents.update',
-            'show' => 'admin.documents.show'
+        ]);
+        Route::resource('contributors', 'ContributorController')->except('show')->names([
+            'store' => 'admin.contributors.store', 'destroy' => 'admin.contributors.destroy',
+            'index' => 'admin.contributors.index', 'create' => 'admin.contributors.create',
+            'edit' => 'admin.contributors.edit', 'update' => 'admin.contributors.update',
         ]);
     });
 });

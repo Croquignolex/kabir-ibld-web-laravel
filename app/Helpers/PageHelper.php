@@ -95,6 +95,18 @@ if(!function_exists('admin_dashboard_pages'))
     }
 }
 
+if(!function_exists('admin_contributor_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_contributor_pages()
+    {
+        return collect(['admin.contributors.index',
+            'admin.contributors.create', 'admin.contributors.edit']);
+    }
+}
+
 if(!function_exists('admin_document_pages'))
 {
     /**
@@ -102,8 +114,8 @@ if(!function_exists('admin_document_pages'))
      */
     function admin_document_pages()
     {
-        return collect(['admin.documents.index', 'admin.documents.create',
-            'admin.documents.edit', 'admin.documents.show']);
+        return collect(['admin.documents.index',
+            'admin.documents.create', 'admin.documents.edit']);
     }
 }
 
@@ -126,8 +138,8 @@ if(!function_exists('admin_service_pages'))
      */
     function admin_service_pages()
     {
-        return collect(['admin.services.index', 'admin.services.create',
-            'admin.services.edit', 'admin.services.show']);
+        return collect(['admin.services.index',
+            'admin.services.create', 'admin.services.edit']);
     }
 }
 

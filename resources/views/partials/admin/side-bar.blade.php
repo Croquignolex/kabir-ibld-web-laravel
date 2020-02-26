@@ -39,6 +39,34 @@
                         </div>
                     </ul>
                 </li>
+                <!-- Contributor -->
+                <li class="has-sub expand {{ active_page(admin_contributor_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#contibutor"
+                       aria-expanded="false" aria-controls="contibutor">
+                        <i class="mdi mdi-account-group-outline"></i>
+                        <span class="nav-text">Intervenants</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(admin_contributor_pages(), 'expend') }}" id="contibutor" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('admin.contributors.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.contributors.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-account-search-outline"></i>
+                                        Tous les intervenants
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('admin.contributors.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.contributors.create') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-account-plus-outline"></i>
+                                        Ajouter un intervenant
+                                    </span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
                 <!-- Document -->
                 <li class="has-sub expand {{ active_page(admin_document_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#document"

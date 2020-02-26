@@ -17,7 +17,7 @@
                 <!-- body -->
                 <div class="card-body">
                     <div id="domains" class="accordion accordion-bordered">
-                        @foreach($domains as $domain)
+                        @forelse($domains as $domain)
                             <div class="card">
                                 <div class="card-header" id="heading{{ $domain->id }}">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ $domain->id }}" aria-expanded="{{ $loop->index == 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $domain->id }}">
@@ -49,11 +49,17 @@
                             @component('components.delete-modal', [
                                 'id' => 'delete-modal-' . $domain->id,
                                 'title' => 'Supprimer ' . $domain->name,
-                                'message' => 'Vous ne pourrez plus consulter ce domaine, êtes vous sûr?',
+                                'message' => 'Vous ne pourrez plus consulter ce domaine, les documents, les intervenants et les messages associés, êtes vous sûr?',
                                 'route' => route('admin.domains.destroy', [$domain])
                             ])
                             @endcomponent
-                        @endforeach
+                        @empty
+                            <div class="text-center">
+                                <div class="alert alert-primary text-primary" role="alert">
+                                    Pas de domaines disponible
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

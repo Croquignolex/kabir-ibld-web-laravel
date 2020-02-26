@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Country;
 use App\Models\Document;
+use App\Models\Domain;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
@@ -31,11 +32,14 @@ class DocumentController extends Controller
         return view('admin.document.index', compact('documents'));
     }
 
-    /**
-     * @return Factory|View
-     */
     public function create()
     {
+        $domains = Domain::all()->sortByDesc('created_at');
+        if($domains->count() == 0)
+        {
+            toast_message('Vous ne pouvez pas créer de documments sans domaine');
+            return back();
+        }
         return view('admin.document.create');
     }
 

@@ -32,11 +32,16 @@ class DomainController extends Controller
     }
 
     /**
-     * @return Factory|View
+     * @return Factory|RedirectResponse|Redirector|View
      */
     public function create()
     {
         $countries = Country::all()->sortByDesc('created_at');
+        if($countries->count() == 0)
+        {
+            toast_message('Vous ne pouvez pas créer de domaine sans pays');
+            return back();
+        }
         return view('admin.domain.create', compact('countries'));
     }
 

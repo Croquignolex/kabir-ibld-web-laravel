@@ -10276,10 +10276,10 @@ div.copied {
     .sidebar-fixed.header-static .main-header {
         padding-left: 0; } }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
     .sidebar-fixed-offcanvas .sidebar-with-footer,
     .sidebar-fixed .sidebar-with-footer {
-        padding-bottom: 209px; } }
+        padding-bottom: 209px; } }*/
 
 @media (min-width: 768px) {
     .sidebar-fixed-offcanvas .sidebar-with-footer .sidebar-footer,

@@ -17,7 +17,7 @@
                 <!-- body -->
                 <div class="card-body">
                     <div id="services" class="accordion accordion-bordered">
-                        @foreach($services as $service)
+                        @forelse($services as $service)
                             <div class="card">
                                 <div class="card-header" id="heading{{ $service->id }}">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ $service->id }}" aria-expanded="{{ $loop->index == 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $service->id }}">
@@ -47,7 +47,13 @@
                                 'route' => route('admin.services.destroy', [$service])
                             ])
                             @endcomponent
-                        @endforeach
+                        @empty
+                            <div class="text-center">
+                                <div class="alert alert-primary text-primary" role="alert">
+                                    Pas de services disponible
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@
             <th class="text-white">Email</th>
             <th class="text-white">Sujet</th>
             @if(!($domain_page ?? false))<th class="text-white">Domaine</th>@endif
+            <th class="text-white">Date</th>
             <th class="text-white">Actions</th>
         </tr>
         </thead>
@@ -24,20 +25,21 @@
                         @endif
                     </td>
                 @endif
+                <td>{{ $contact->created_date }}</td>
                 <td class="text-right">
                     <a class="btn btn-primary btn-sm" title="Détails"
                        href="{{ route('admin.contacts.show', [$contact]) }}">
                         <i class="mdi mdi-eye-outline"></i>
                     </a>
                     <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
-                            data-target="#delete-modal-{{ $contact->id }}">
+                            data-target="#delete-contact-modal-{{ $contact->id }}">
                         <i class="mdi mdi-trash-can-outline"></i>
                     </button>
                 </td>
                 @component('components.delete-modal', [
-                    'id' => 'delete-modal-' . $contact->id,
+                    'id' => 'delete-contact-modal-' . $contact->id,
                     'title' => 'Supprimer le méssage de ' . $contact->name,
-                    'message' => 'Vous ne pourrez plus consulter ce méssage, êtes vous sûr?',
+                    'message' => 'Vous ne pourrez plus consulter ce méssage et les réponses associés, êtes vous sûr?',
                     'route' => route('admin.contacts.destroy', [$contact])
                 ])
                 @endcomponent

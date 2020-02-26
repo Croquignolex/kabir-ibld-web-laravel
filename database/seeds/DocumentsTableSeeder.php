@@ -19,7 +19,7 @@ class DocumentsTableSeeder extends Seeder
             'name' => 'Document de test',
             'code' => 'FGD2020KZOP546H',
             'file' => 'fQ0rLkQVMm86pqAyQVytyLghmgGxZVqRSubymU6o',
-            'description' => 'Juste un document de test a supprimer à tout moment',
+            'description' => 'Juste un document de test à supprimer à tout moment',
             'domain_id' => 1
         ]);
     }

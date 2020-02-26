@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('token', 255);
             $table->string('first_name', 255);
             $table->string('last_name', 255);
-            $table->string('image', 255)->default('default');
+            $table->string('file', 255)->default('default');
             $table->string('extension', 50)->default('png');
             $table->string('address', 255)->nullable();
             $table->string('post_code', 255)->nullable();

@@ -49,8 +49,7 @@ class CountryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('admin.countries.create'))
-                ->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
         Country::create($request->all());

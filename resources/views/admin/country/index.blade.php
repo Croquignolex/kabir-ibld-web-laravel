@@ -54,7 +54,7 @@
                                         @component('components.delete-modal', [
                                             'id' => 'delete-modal-' . $country->id,
                                             'title' => 'Supprimer ' . $country->fr_name,
-                                            'message' => 'Vous ne pourrez plus consulter ce pays, êtes vous sûr?',
+                                            'message' => 'Vous ne pourrez plus consulter ce pays et les domaines associés, êtes vous sûr?',
                                             'route' => route('admin.countries.destroy', [$country])
                                         ])
                                         @endcomponent

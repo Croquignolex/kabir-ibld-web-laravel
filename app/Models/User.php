@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Str;
+use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -17,7 +17,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed last_name
  * @property mixed format_last_name
  * @property mixed format_first_name
- * @property mixed image
+ * @property mixed file
+ * @property mixed extension
  */
 class User extends Authenticatable
 {
@@ -33,7 +34,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name', 'last_name', 'post_code', 'extension',
         'city', 'country', 'phone', 'profession', 'address', 'role_id',
-        'image', 'description', 'email', 'is_confirmed', 'email', 'password'
+        'file', 'description', 'email', 'is_confirmed', 'email', 'password'
     ];
 
     /**
@@ -129,9 +130,9 @@ class User extends Authenticatable
      * @return string
      */
     public function getAvatarSrcAttribute() {
-        if(!file_exists(img_asset($this->image)))
+        if(!file_exists(img_asset($this->file)))
             $this->update(['image' => self::USER_DEFAULT_IMAGE]);
 
-        return img_asset($this->image);
+        return img_asset($this->file, $this->extension, 'users/');
     }
 }

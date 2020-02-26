@@ -41,8 +41,8 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane pt-3 fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                                 <ul>
-                                    <li><i class="{{ $domain->icon }}"></i></li>
-                                    <li>{{ $domain->country->fr_name }}</li>
+                                    <li><i class="{{ $domain->icon }} text-primary"></i></li>
+                                    <li><span class="badge badge-primary">{{ $domain->country->fr_name }}</span></li>
                                     <li>{{ $domain->description }}</li>
                                 </ul>
                                 <p class="text-right">
@@ -57,9 +57,7 @@
                                 </p>
                             </div>
                             <div class="tab-pane pt-3 fade" id="contributors" role="tabpanel" aria-labelledby="contributors-tab">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                @include('partials.admin.contributors-card', ['contributors' => $domain->contributors, 'domain_page' => true])
                             </div>
                             <div class="tab-pane pt-3 fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

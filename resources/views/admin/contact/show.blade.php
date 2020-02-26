@@ -86,7 +86,7 @@
     @component('components.delete-modal', [
         'id' => 'delete-modal',
         'title' => 'Supprimer le méssage de ' . $contact->name,
-        'message' => 'Vous ne pourrez plus consulter ce méssage, êtes vous sûr?',
+        'message' => 'Vous ne pourrez plus consulter ce méssage et les réponses associés, êtes vous sûr?',
         'route' => route('admin.contacts.destroy', [$contact])
     ])
     @endcomponent
