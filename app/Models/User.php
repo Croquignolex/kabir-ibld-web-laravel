@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Str;
+use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -11,38 +11,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * @property mixed id
  * @property mixed role
- * @property string city
- * @property mixed image
- * @property string phone
- * @property string token
- * @property string address
- * @property string country
- * @property mixed extension
- * @property string post_code
- * @property mixed authorised
- * @property mixed currencies
- * @property string avatar_src
- * @property mixed is_factored
- * @property string profession
- * @property bool is_confirmed
- * @property string description
- * @property mixed user_settings
  * @property mixed password_reset
- * @property mixed format_full_name
+ * @property mixed first_name
+ * @property mixed last_name
  * @property mixed format_last_name
  * @property mixed format_first_name
- * @property array|null|string email
- * @property array|null|string password
- * @property array|null|string last_name
- * @property array|null|string first_name
+ * @property mixed file
+ * @property mixed extension
  */
 class User extends Authenticatable
 {
     use LocaleDateTimeTrait;
 
     const USER_DEFAULT_IMAGE = 'default';
+    const FOLDER = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -52,7 +35,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name', 'last_name', 'post_code', 'extension',
         'city', 'country', 'phone', 'profession', 'address', 'role_id',
-        'image', 'description', 'email', 'is_confirmed', 'email', 'password'
+        'file', 'description', 'email', 'is_confirmed', 'email', 'password'
     ];
 
     /**
@@ -148,9 +131,9 @@ class User extends Authenticatable
      * @return string
      */
     public function getAvatarSrcAttribute() {
-        if(!file_exists(img_asset($this->image)))
+        if(!file_exists(img_asset($this->file)))
             $this->update(['image' => self::USER_DEFAULT_IMAGE]);
 
-        return img_asset($this->image);
+        return img_asset($this->file, $this->extension, self::FOLDER . '/');
     }
 }

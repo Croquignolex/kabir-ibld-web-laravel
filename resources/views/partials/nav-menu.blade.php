@@ -5,11 +5,11 @@
 @endphp
 <div class="navbar-right">
     <ul class="nav navbar-nav">
-        <li class="dropdown notifications-menu">
+        {{--<li class="dropdown notifications-menu">
             <button class="dropdown-toggle" data-toggle="dropdown">
                 <i class="mdi mdi-bell-outline"></i>
-                {{--<i class="mdi mdi-bell-ring text-danger"></i>
-                <small class="very-small">(2)</small>--}}
+                --}}{{--<i class="mdi mdi-bell-ring text-danger"></i>
+                <small class="very-small">(2)</small>--}}{{--
             </button>
             <!-- Notifications area -->
             <ul class="dropdown-menu dropdown-menu-right">
@@ -24,7 +24,7 @@
                     <a class="text-center" href="#">Tous voir</a>
                 </li>
             </ul>
-        </li>
+        </li>--}}
         <li class="dropdown notifications-menu">
             <button class="dropdown-toggle" data-toggle="dropdown">
                 @if($contactsNumber === 0)
@@ -78,7 +78,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="mdi mdi-settings"></i> Paramètres
+                        <i class="mdi mdi-settings"></i> Gérer les utilisateurs
                     </a>
                 </li>
                 <li class="dropdown-footer">

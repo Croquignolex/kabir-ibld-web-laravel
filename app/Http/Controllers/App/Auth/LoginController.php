@@ -128,8 +128,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        toast_message(trans('auth.info'),  trans('auth.welcome',
-            ['name' => $user->format_full_name]));
+        toast_message(trans('auth.welcome', ['name' => $user->format_full_name]));
     }
 
     /**

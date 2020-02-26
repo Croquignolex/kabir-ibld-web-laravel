@@ -1,26 +1,26 @@
 @extends('layouts.app', [
     'layout' => 'admin',
     'breadcrumb_name' => 'Pays',
-    'breadcrumb_icon' => 'mdi mdi-map',
+    'breadcrumb_icon' => 'mdi mdi-flag',
     'breadcrumb_chain' => ['Outils', 'Pays']
 ])
 
 @section('app.master.title', page_title('Tous les pays'))
-
-@push('app.master.style')
-    <link rel="stylesheet" href="{{ css_asset('datatables.bootstrap4.min') }}" type="text/css">
-    <link rel="stylesheet" href="{{ css_asset('responsive.datatables.min') }}" type="text/css">
-@endpush
 
 @section('app.master.body')
     <div class="row">
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>List des pays</h2>
+                    <h2>Liste des pays</h2>
                 </div>
                 <!-- Table -->
                 <div class="card-body">
+                    <a href="{{ route('admin.countries.create') }}"
+                        class="btn btn-primary mb-2">
+                        <i class="mdi mdi-flag-plus"></i>
+                        Ajouter un pays
+                    </a>
                     <div class="responsive-data-table">
                         <table id="responsive-data-table" class="table dt-responsive nowrap table-bordered table-hover" style="width:100%">
                             <thead class="bg-primary">
@@ -30,6 +30,7 @@
                                     <th class="text-white">Alpha 3</th>
                                     <th class="text-white">Nom en Anglais</th>
                                     <th class="text-white">Nom en Francais </th>
+                                    <th class="text-white">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,23 @@
                                         <td>{{ $country->alpha_3 }}</td>
                                         <td>{{ $country->en_name }}</td>
                                         <td>{{ $country->fr_name }}</td>
+                                        <td class="text-right">
+                                            <a class="btn btn-warning btn-sm text-white" title="Modifier"
+                                               href="{{ route('admin.countries.edit', [$country]) }}">
+                                                <i class="mdi mdi-square-edit-outline"></i>
+                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
+                                                    data-target="#delete-modal-{{ $country->id }}">
+                                                <i class="mdi mdi-trash-can-outline"></i>
+                                            </button>
+                                        </td>
+                                        @component('components.delete-modal', [
+                                            'id' => 'delete-modal-' . $country->id,
+                                            'title' => 'Supprimer ' . $country->fr_name,
+                                            'message' => 'Vous ne pourrez plus consulter ce pays et les domaines associés, êtes vous sûr?',
+                                            'route' => route('admin.countries.destroy', [$country])
+                                        ])
+                                        @endcomponent
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -51,40 +69,4 @@
     </div>
 @endsection
 
-@push('app.master.script')
-    <script type="text/javascript">
-        $(function() {
-            $('#responsive-data-table').DataTable({
-                "responsive": true,
-                "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
-                "pageLength": 20,
-                "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">',
-                language: {
-                    processing:     "Traitement en cours...",
-                    search:         "Rechercher&nbsp;:",
-                    lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
-                    info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                    infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    infoPostFix:    "",
-                    loadingRecords: "Chargement en cours...",
-                    zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    emptyTable:     "Aucune donnée disponible dans le tableau",
-                    paginate: {
-                        first:      "Premier",
-                        previous:   "Pr&eacute;c&eacute;dent",
-                        next:       "Suivant",
-                        last:       "Dernier"
-                    },
-                    aria: {
-                        sortAscending:  ": activer pour trier la colonne par ordre croissant",
-                        sortDescending: ": activer pour trier la colonne par ordre décroissant"
-                    }
-                }
-            });
-        });
-    </script>
-    <script src="{{ js_asset('jquery.datatables.min') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('datatables.bootstrap4.min') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('datatables.responsive.min') }}" type="text/javascript"></script>
-@endpush
+@include('partials.table-page-push')

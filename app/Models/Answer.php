@@ -6,12 +6,6 @@ use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @property mixed email
- * @property mixed is_read
- * @property mixed subject
- * @property mixed format_name
- */
 class Answer extends Model
 {
     use LocaleDateTimeTrait;

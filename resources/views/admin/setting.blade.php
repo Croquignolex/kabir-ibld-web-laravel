@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'layout' => 'admin',
-    'breadcrumb_name' => 'Information du site',
+    'breadcrumb_name' => 'Information',
     'breadcrumb_icon' => 'mdi mdi-information-outline',
-    'breadcrumb_chain' => ['Outils', 'Information du site']
+    'breadcrumb_chain' => ['Outils', 'Information']
 ]))
 
 @section('app.master.title', page_title('Information du site'))
@@ -16,16 +16,6 @@
                 </div>
                 <!-- body -->
                 <div class="card-body">
-                    @if(session()->has('popup.message'))
-                        <div class="text-center">
-                            <div class="alert alert-{{ session('popup.type') }} alert-dismissable text-danger" role="alert">
-                                <button type="button" class="close text-danger" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                {{ session('popup.message') }}
-                            </div>
-                        </div>
-                    @endif
                     <form action="" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -67,7 +57,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Enrégistrer</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="mdi mdi-check"></i>
+                                Enrégistrer
+                            </button>
                         </div>
                     </form>
                 </div>

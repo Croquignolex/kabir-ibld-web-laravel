@@ -25,10 +25,12 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h4 class="heading-title mb-0 text-dark">
                                                 {{ "$contact->name <$contact->email>" }} <br>
-                                                <strong>{{ $contact->subject }}</strong> <br>
-                                                <a href="{{ route('admin.domains.show', [$contact->domain]) }}">
-                                                    <span class="badge badge-primary">{{ $contact->domain->name }}</span>
-                                                </a>
+                                                <strong class="text-primary">{{ $contact->subject }}</strong> <br>
+                                                @if($contact->domain !== null)
+                                                    <a href="{{ route('admin.domains.show', [$contact->domain]) }}">
+                                                        <span class="badge badge-primary">{{ $contact->domain->name }}</span>
+                                                    </a>
+                                                @endif
                                             </h4>
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
@@ -84,7 +86,7 @@
     @component('components.delete-modal', [
         'id' => 'delete-modal',
         'title' => 'Supprimer le méssage de ' . $contact->name,
-        'message' => 'Vous ne pourrez plus consulter ce méssage, êtes vous sûr?',
+        'message' => 'Vous ne pourrez plus consulter ce méssage et les réponses associés, êtes vous sûr?',
         'route' => route('admin.contacts.destroy', [$contact])
     ])
     @endcomponent
