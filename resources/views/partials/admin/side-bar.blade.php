@@ -39,6 +39,62 @@
                         </div>
                     </ul>
                 </li>
+                <!-- Contributor -->
+                <li class="has-sub expand {{ active_page(admin_contributor_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#contibutor"
+                       aria-expanded="false" aria-controls="contibutor">
+                        <i class="mdi mdi-account-group-outline"></i>
+                        <span class="nav-text">Intervenants</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(admin_contributor_pages(), 'expend') }}" id="contibutor" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('admin.contributors.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.contributors.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-account-search-outline"></i>
+                                        Tous les intervenants
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('admin.contributors.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.contributors.create') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-account-plus-outline"></i>
+                                        Ajouter un intervenant
+                                    </span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <!-- Document -->
+                <li class="has-sub expand {{ active_page(admin_document_pages()) }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#document"
+                       aria-expanded="false" aria-controls="document">
+                        <i class="mdi mdi-file-document-box-multiple-outline"></i>
+                        <span class="nav-text">Documents</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse {{ active_page(admin_document_pages(), 'expend') }}" id="document" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li class="{{ active_page(collect('admin.documents.index')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.documents.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-file-find-outline"></i>
+                                        Tous les documents
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="{{ active_page(collect('admin.documents.create')) }}">
+                                <a class="sidenav-item-link" href="{{ route('admin.documents.create') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-file-upload-outline"></i>
+                                        Ajouter un document
+                                    </span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
                 <!-- Domain -->
                 <li class="has-sub expand {{ active_page(admin_domain_pages()) }}">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#domain"
@@ -104,7 +160,7 @@
                     </a>
                     <ul class="collapse {{ active_page(admin_tools_pages(), 'expend') }}" id="tool" data-parent="#sidebar-menu">
                         <div class="sub-menu">
-                            <li class="{{ active_page(collect('admin.countries.index')) }}">
+                            <li class="{{ active_page(collect('admin.settings.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('admin.settings.index') }}">
                                     <span class="nav-text">
                                         <i class="mdi mdi-information-outline"></i> Informations du site
@@ -114,7 +170,7 @@
                             <li class="{{ active_page(collect('admin.countries.index')) }}">
                                 <a class="sidenav-item-link" href="{{ route('admin.countries.index') }}">
                                     <span class="nav-text">
-                                        <i class="mdi mdi-map"></i> Pays
+                                        <i class="mdi mdi-flag"></i> Pays
                                     </span>
                                 </a>
                             </li>

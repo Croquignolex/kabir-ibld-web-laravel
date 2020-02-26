@@ -7,12 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @property mixed email
- * @property mixed is_read
- * @property mixed subject
- * @property mixed format_name
- */
 class Contact extends Model
 {
     use LocaleDateTimeTrait;
@@ -25,7 +19,6 @@ class Contact extends Model
     protected $fillable = [
         'name', 'email', 'phone', 'subject', 'message', 'viewed', 'domain_id'
     ];
-
 
     /**
      * @return HasMany

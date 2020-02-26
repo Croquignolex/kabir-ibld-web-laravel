@@ -95,6 +95,30 @@ if(!function_exists('admin_dashboard_pages'))
     }
 }
 
+if(!function_exists('admin_contributor_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_contributor_pages()
+    {
+        return collect(['admin.contributors.index',
+            'admin.contributors.create', 'admin.contributors.edit']);
+    }
+}
+
+if(!function_exists('admin_document_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_document_pages()
+    {
+        return collect(['admin.documents.index',
+            'admin.documents.create', 'admin.documents.edit']);
+    }
+}
+
 if(!function_exists('admin_domain_pages'))
 {
     /**
@@ -114,8 +138,8 @@ if(!function_exists('admin_service_pages'))
      */
     function admin_service_pages()
     {
-        return collect(['admin.services.index', 'admin.services.create',
-            'admin.services.edit', 'admin.services.show']);
+        return collect(['admin.services.index',
+            'admin.services.create', 'admin.services.edit']);
     }
 }
 
@@ -126,7 +150,7 @@ if(!function_exists('admin_tools_pages'))
      */
     function admin_tools_pages()
     {
-        return collect(['admin.countries.index', 'admin.settings.index',
-            'admin.contacts.index', 'admin.contacts.show']);
+        return collect(['admin.countries.index', 'admin.countries.edit', 'admin.countries.create',
+            'admin.settings.index', 'admin.contacts.index', 'admin.contacts.show']);
     }
 }

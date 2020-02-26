@@ -28,17 +28,16 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::all()->sortByDesc('created_at');
         foreach ($contacts as $contact) $contact->update(['viewed' => true]);
         return view('admin.contact.index', compact('contacts'));
     }
 
     /**
-     * @param Request $request
      * @param Contact $contact
      * @return Factory|View
      */
-    public function show(Request $request, Contact $contact)
+    public function show(Contact $contact)
     {
         $contact->update(['viewed' => true]);
         return view('admin.contact.show', compact('contact'));
@@ -56,7 +55,7 @@ class ContactController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(back())->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
         try
@@ -83,7 +82,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        toast_message('Méssage  supprimé avec succès');
+        toast_message('Méssage supprimé avec succès');
         return redirect(route('admin.contacts.index'));
     }
 }

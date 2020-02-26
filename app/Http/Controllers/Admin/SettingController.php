@@ -36,10 +36,7 @@ class SettingController extends Controller
     public function update(SettingRequest $request)
     {
         $setting = Setting::all()->first();
-        $setting->update([
-            'phone' => $request->input('phone'),
-            'town' => $request->input('town')
-        ]);
+        $setting->update($request->all());
         toast_message('Informations enrégistrées avec succès');
         return redirect(route('admin.settings.index'));
     }
