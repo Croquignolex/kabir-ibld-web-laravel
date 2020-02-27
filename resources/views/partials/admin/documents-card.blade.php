@@ -16,6 +16,10 @@
                                 title="Description" data-content="{{ $document->description }}">
                             ...
                         </button>
+                        <button class="btn btn-sm btn-info" title="Téléchargement"
+                                onclick="document.getElementById('{{ $document->id }}-download-form').submit();">
+                            <i class="mdi mdi-download"></i>
+                        </button>
                         <a class="btn btn-sm btn-warning text-white" title="Modifier"
                             href="{{ route('admin.documents.edit', [$document]) }}">
                             <i class="mdi mdi-square-edit-outline"></i>
@@ -35,6 +39,10 @@
             'route' => route('admin.documents.destroy', [$document])
         ])
         @endcomponent
+        <form id="{{ $document->id }}-download-form" action="{{ route('admin.documents.download', [$document]) }}" method="POST" class="hidden">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+        </form>
     @empty
         <div class="text-center col-12">
             <div class="alert alert-primary text-primary" role="alert">

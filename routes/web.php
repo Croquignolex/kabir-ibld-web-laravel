@@ -78,6 +78,7 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
         ]);
         // Documents routes...
+        Route::delete('documents/download/{document}', 'DocumentController@download')->name('admin.documents.download');
         Route::resource('documents', 'DocumentController')->except('show')->names([
             'store' => 'admin.documents.store', 'destroy' => 'admin.documents.destroy',
             'index' => 'admin.documents.index', 'create' => 'admin.documents.create',

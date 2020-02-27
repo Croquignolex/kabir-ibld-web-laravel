@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use App\Models\Domain;
 use App\Models\Document;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
 use App\Traits\FileManageTrait;
 use Illuminate\Routing\Redirector;
@@ -14,6 +15,7 @@ use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\DocumentRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DocumentController extends Controller
 {
@@ -111,6 +113,29 @@ class DocumentController extends Controller
     {
         $document->delete();
         toast_message('Document supprimé avec succès');
+        return back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Document $document
+     * @return RedirectResponse|BinaryFileResponse
+     * @throws Exception
+     */
+    public function download(Document $document)
+    {
+        //todo: Check that the user has subscribe to this domain before download the document
+        $img_asset_path = 'public/assets/img/';
+        $file = base_path($img_asset_path . Document::FOLDER . '/') . $document->file . '.' . $document->extension;
+
+        if(File::exists($file))
+        {
+            // toast_message('Document en cours de téléchargement');
+            return response()->download($file);
+        }
+
+        toast_message('Vous ne pouvez pas télécharger ce fichier');
         return back();
     }
 }
