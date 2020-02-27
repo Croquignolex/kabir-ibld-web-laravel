@@ -13,6 +13,7 @@ trait RequestTrait
     private $required_string_1_10 = 'required|string|min:1|max:10';
     private $required_email = 'required|string|min:2|max:255|email';
     private $required_string_2_255 = 'required|string|min:2|max:255';
+    private $required_string_6_255 = 'required|string|min:6|max:255';
     private $required_string_2_510 = 'required|string|min:2|max:510';
 
     /**

@@ -68,90 +68,121 @@
                     <!-- Information -->
                     <div class="tab-content px-3 px-xl-5" id="myTabContent">
                         <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-                            <div class="mt-5">
+                            <div class="mt-4">
                                 <form method="POST" action="">
+                                    {{ csrf_field() }}
                                     {{ method_field('PUT') }}
-                                    <div class="form-group">
-                                        <label for="phone">
-                                            Prénom
-                                            @if ($errors->has('phone'))
-                                                <span class="text-danger">
-                                        {{ $errors->first('phone') }}
-                                    </span>
-                                            @endif
-                                        </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="mdi mdi-phone"></i>
-                                    </span>
-                                            </div>
-                                            <input type="text" class="form-control" id="phone"
-                                                   name="phone" value="{{ old('phone') ?? $user->phone }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <label for="first_name">Prénom</label>
-                                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $user->first_name }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="last_name">Nom</label>
-                                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $user->last_name }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="phone">Téléphone</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="post_code">Code postal</label>
-                                        <input type="text" class="form-control" id="post_code" name="post_code" value="{{ $user->post_code }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="city">Ville</label>
-                                        <input type="text" class="form-control" id="city" name="city" value="{{ $user->city }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="country">Pays</label>
-                                        <input type="text" class="form-control" id="country" name="country" value="{{ $user->country }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="profession">Profession</label>
-                                        <input type="text" class="form-control" id="profession" name="profession" value="{{ $user->profession }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="address">Adresse</label>
-                                        <input type="text" class="form-control" id="address" name="address" value="{{ $user->address }}">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="description">Description</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="mdi mdi-format-align-justify"></i>
-                                            </span>
-                                            </div>
-                                            <textarea name="description" id="description" rows="5"
-                                                      class="form-control"
-                                            >{{ old('description') ?? $user->description }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end mt-5">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="mdi mdi-check"></i>
-                                            Enrégistrer
-                                        </button>
-                                    </div>
+                                    @include('partials.form.input', [
+                                        'name' => 'Prénom',
+                                        'id' => 'first_name',
+                                        'icon' => 'mdi mdi-account-question',
+                                        'type' => 'text',
+                                        'value' =>  old('first_name') ?? $user->first_name,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Nom',
+                                        'id' => 'last_name',
+                                        'icon' => 'mdi mdi-account-question-outline',
+                                        'type' => 'text',
+                                        'value' =>  old('last_name') ?? $user->last_name,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Téléphone',
+                                        'id' => 'phone',
+                                        'icon' => 'mdi mdi-deskphone',
+                                        'type' => 'text',
+                                        'value' =>  old('phone') ?? $user->phone,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Code postal',
+                                        'id' => 'post_code',
+                                        'icon' => 'mdi mdi-inbox',
+                                        'type' => 'text',
+                                        'value' =>  old('post_code') ?? $user->post_code,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Ville',
+                                        'id' => 'city',
+                                        'icon' => 'mdi mdi-city-variant-outline',
+                                        'type' => 'text',
+                                        'value' =>  old('city') ?? $user->city,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Pays',
+                                        'id' => 'country',
+                                        'icon' => 'mdi mdi-flag',
+                                        'type' => 'text',
+                                        'value' =>  old('country') ?? $user->country,
+                                    ])
+                                    @include('partials.form.input', [
+                                        'name' => 'Profession',
+                                        'id' => 'profession',
+                                        'icon' => 'mdi mdi-worker',
+                                        'type' => 'text',
+                                        'value' =>  old('profession') ?? $user->profession,
+                                    ])
+                                    @include('partials.form.input', [
+                                       'name' => 'Adresse',
+                                       'id' => 'address',
+                                       'icon' => 'mdi mdi-home-account',
+                                       'type' => 'text',
+                                       'value' =>  old('address') ?? $user->address,
+                                   ])
+                                    @include('partials.form.textarea', [
+                                       'name' => 'Description',
+                                       'id' => 'description',
+                                       'icon' => 'mdi mdi-format-align-justify',
+                                       'value' => old('description') ?? $user->description,
+                                   ])
+                                    @include('partials.form.submit')
                                 </form>
                             </div>
                         </div>
                         <!-- Avatar -->
                         <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
-
+                            <div class="mt-4">
+                                <form method="POST" action="{{ route('admin.account.avatar') }}" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
+                                    @include('partials.form.file', [
+                                        'name' => 'Photo',
+                                        'icon' => 'mdi mdi-image',
+                                        'tip' => 'Il est conseiller de choisir une image carré pour un meilleur appreçus',
+                                    ])
+                                    @include('partials.form.submit')
+                                </form>
+                            </div>
                         </div>
                         <!-- Password -->
                         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-
+                            <div class="mt-4">
+                                <form method="POST" action="{{ route('admin.account.password') }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
+                                    @include('partials.form.input', [
+                                        'name' => 'Ancien mot de passe',
+                                        'id' => 'old_password',
+                                        'icon' => 'mdi mdi-textbox-password',
+                                        'type' => 'password',
+                                        'value' =>  old('old_password'),
+                                    ])
+                                    @include('partials.form.input', [
+                                       'name' => 'Nouveau mot de passe',
+                                       'id' => 'password',
+                                       'icon' => 'mdi mdi-textbox',
+                                       'type' => 'password',
+                                       'value' =>  old('password'),
+                                    ])
+                                    @include('partials.form.input', [
+                                      'name' => 'Confrimer le mot de passe',
+                                      'id' => 'password_confirmation',
+                                      'icon' => 'mdi mdi-textbox',
+                                      'type' => 'password',
+                                      'value' => old('password_confirmation'),
+                                   ])
+                                    @include('partials.form.submit')
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

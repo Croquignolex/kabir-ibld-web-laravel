@@ -39,6 +39,7 @@ Route::prefix('admin')->group(function() {
             //--Account routes...
             Route::get('/account', 'AccountController@index')->name('admin.account.index');
             Route::put('/account', 'AccountController@update');
+            Route::put('/account/avatar', 'AccountController@changeAvatar')->name('admin.account.avatar');
             Route::put('/account/password', 'AccountController@changePassword')->name('admin.account.password');
         });
         // ...
