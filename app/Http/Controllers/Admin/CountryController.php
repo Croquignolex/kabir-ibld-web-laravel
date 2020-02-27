@@ -26,7 +26,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::all()->sortByDesc('created_at');
+        $countries = Country::all()->sortByDesc('updated_at');
         return view('admin.country.index', compact('countries'));
     }
 

@@ -14,7 +14,7 @@ use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\ContributorRequest;
 use Illuminate\Validation\ValidationException;
 
-class ContributorController extends Controller
+class UserController extends Controller
 {
     use FileManageTrait;
 

@@ -12,13 +12,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property mixed role
- * @property mixed password_reset
- * @property mixed first_name
+ * @property mixed city
+ * @property mixed file
+ * @property mixed email
+ * @property mixed phone
+ * @property mixed country
+ * @property mixed address
  * @property mixed last_name
+ * @property mixed extension
+ * @property mixed post_code
+ * @property mixed role_name
+ * @property mixed first_name
+ * @property mixed avatar_src
+ * @property mixed profession
+ * @property mixed description
+ * @property mixed password_reset
+ * @property mixed format_full_name
  * @property mixed format_last_name
  * @property mixed format_first_name
- * @property mixed file
- * @property mixed extension
  */
 class User extends Authenticatable
 {
@@ -115,6 +126,17 @@ class User extends Authenticatable
     public function getFormatFullNameAttribute()
     {
         return $this->format_first_name . ' ' . $this->format_last_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoleNameAttribute()
+    {
+        if($this->role->type === Role::SUPER_ADMIN) return 'Super administrateur';
+        else if($this->role->type === Role::ADMIN) return 'Administrateur';
+
+        return 'Membre';
     }
 
     /**

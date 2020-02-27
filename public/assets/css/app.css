@@ -12325,6 +12325,10 @@ tbody tr td:first-child {
     height: 100px;
     overflow: hidden; }
 
+.widget-profile .card-img img {
+    width: 100px;
+    height: 100px;}
+
 /* Widgets Dropdown */
 .widget-dropdown .dropdown-toggle {
     color: #8a909d;

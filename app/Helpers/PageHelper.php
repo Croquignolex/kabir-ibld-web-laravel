@@ -95,6 +95,18 @@ if(!function_exists('admin_dashboard_pages'))
     }
 }
 
+if(!function_exists('admin_user_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function admin_user_pages()
+    {
+        return collect(['admin.users.index',
+            'admin.users.create', 'admin.users.show']);
+    }
+}
+
 if(!function_exists('admin_contributor_pages'))
 {
     /**

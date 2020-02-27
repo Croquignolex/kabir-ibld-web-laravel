@@ -59,7 +59,7 @@
         <!-- User Account -->
         <li class="dropdown user-menu">
             <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <img src="{{ $user->avatar_src }}" class="user-image" alt="User Image" />
+                <img src="{{ $user->avatar_src }}" class="user-image" alt="..." />
                 <span class="d-none d-lg-inline-block">{{ $user->format_first_name }}</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
@@ -71,20 +71,19 @@
                         <small class="pt-1">{{ text_format($user->email, 25) }}</small>
                     </div>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ active_page(collect(['admin.account.index'])) === 'active' ? 'bg-light' : '' }}">
+                    <a href="{{ route('admin.account.index') }}">
                         <i class="mdi mdi-account"></i> Mon Profil
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ active_page(admin_user_pages()) === 'active' ? 'bg-light' : '' }}">
+                    <a href="{{ route('admin.users.index') }}">
                         <i class="mdi mdi-settings"></i> Gérer les utilisateurs
                     </a>
                 </li>
                 <li class="dropdown-footer">
-                    <a class="nav-link logout" href="javascript: void(0);" role="button" data-placement="bottom"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                       data-content="Déconnexion" data-trigger="hover" data-toggle="popover">
+                    <a class="nav-link logout" href="javascript: void(0);" role="button"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="mdi mdi-logout"></i>
                         Déconnexion
                     </a>

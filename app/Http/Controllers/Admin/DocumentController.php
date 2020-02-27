@@ -32,13 +32,13 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents = Document::all()->sortByDesc('created_at');
+        $documents = Document::all()->sortByDesc('updated_at');
         return view('admin.document.index', compact('documents'));
     }
 
     public function create()
     {
-        $domains = Domain::all()->sortByDesc('created_at');
+        $domains = Domain::all()->sortByDesc('updated_at');
         if($domains->count() == 0)
         {
             toast_message('Vous ne pouvez pas créer de documments sans domaine');
@@ -84,7 +84,7 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        $domains = Domain::all()->sortByDesc('created_at');
+        $domains = Domain::all()->sortByDesc('updated_at');
         return view('admin.document.edit', compact('document', 'domains'));
     }
 

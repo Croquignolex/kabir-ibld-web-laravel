@@ -37,47 +37,53 @@ Route::prefix('admin')->group(function() {
             Route::post('login', 'LoginController@login');
             Route::post('logout', 'LoginController@logout')->name('admin.logout');
             //--Account routes...
-            /*Route::get('/account/validation/{email}/{token}', 'AccountController@validation')->name('admin.account.validation');
             Route::get('/account', 'AccountController@index')->name('admin.account.index');
-            Route::get('/account/password', 'AccountController@password')->name('admin.account.password');
-            Route::get('/account/email', 'AccountController@email')->name('admin.account.email');
             Route::put('/account', 'AccountController@update');
-            Route::put('/account/password', 'AccountController@changePassword');
-            Route::post('/account/email', 'AccountController@sendLink');*/
+            Route::put('/account/password', 'AccountController@changePassword')->name('admin.account.password');
         });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
-        // Setting
+        // Setting routes...
         Route::get('settings', 'SettingController@index')->name('admin.settings.index');
         Route::post('settings', 'SettingController@update')->name('admin.settings.update');
-        // Contact
+        // Contact routes...
         Route::post('contacts/answer/{contact}', 'ContactController@answer')->name('admin.contacts.answer');
         Route::resource('contacts', 'ContactController')->only('index', 'show', 'destroy')->names([
             'show' => 'admin.contacts.show', 'index' => 'admin.contacts.index',
             'destroy' => 'admin.contacts.destroy'
         ]);
-        // ...
+        // Domains routes...
         Route::resource('domains', 'DomainController')->names([
             'destroy' => 'admin.domains.destroy', 'store' => 'admin.domains.store',
             'update' => 'admin.domains.update', 'index' => 'admin.domains.index',
             'show' => 'admin.domains.show', 'edit' => 'admin.domains.edit',
             'create' => 'admin.domains.create',
         ]);
+        // Users routes...
+        Route::resource('users', 'UserController')->except('edit')->names([
+            'destroy' => 'admin.users.destroy', 'store' => 'admin.users.store',
+            'update' => 'admin.users.update', 'index' => 'admin.users.index',
+            'show' => 'admin.users.show', 'create' => 'admin.users.create',
+        ]);
+        // Services routes...
         Route::resource('services', 'ServiceController')->except('show')->names([
             'store' => 'admin.services.store', 'destroy' => 'admin.services.destroy',
             'index' => 'admin.services.index', 'create' => 'admin.services.create',
             'edit' => 'admin.services.edit', 'update' => 'admin.services.update',
         ]);
+        // Countries routes...
         Route::resource('countries', 'CountryController')->except('show')->names([
             'store' => 'admin.countries.store', 'destroy' => 'admin.countries.destroy',
             'index' => 'admin.countries.index', 'create' => 'admin.countries.create',
             'edit' => 'admin.countries.edit', 'update' => 'admin.countries.update',
         ]);
+        // Documents routes...
         Route::resource('documents', 'DocumentController')->except('show')->names([
             'store' => 'admin.documents.store', 'destroy' => 'admin.documents.destroy',
             'index' => 'admin.documents.index', 'create' => 'admin.documents.create',
             'edit' => 'admin.documents.edit', 'update' => 'admin.documents.update',
         ]);
+        // Contributors routes...
         Route::resource('contributors', 'ContributorController')->except('show')->names([
             'store' => 'admin.contributors.store', 'destroy' => 'admin.contributors.destroy',
             'index' => 'admin.contributors.index', 'create' => 'admin.contributors.create',

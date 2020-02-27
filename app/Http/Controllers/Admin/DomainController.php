@@ -27,7 +27,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        $domains = Domain::all()->sortByDesc('created_at');
+        $domains = Domain::all()->sortByDesc('updated_at');
         return view('admin.domain.index', compact('domains'));
     }
 
@@ -36,7 +36,7 @@ class DomainController extends Controller
      */
     public function create()
     {
-        $countries = Country::all()->sortByDesc('created_at');
+        $countries = Country::all()->sortByDesc('updated_at');
         if($countries->count() == 0)
         {
             toast_message('Vous ne pouvez pas créer de domaine sans pays');
@@ -71,7 +71,7 @@ class DomainController extends Controller
      */
     public function edit(Domain $domain)
     {
-        $countries = Country::all()->sortByDesc('created_at');
+        $countries = Country::all()->sortByDesc('updated_at');
         return view('admin.domain.edit', compact('domain', 'countries'));
     }
 
