@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
+ * @property mixed id
  * @property mixed role
  * @property mixed city
  * @property mixed file
@@ -129,6 +130,18 @@ class User extends Authenticatable
     }
 
     /**
+     * User avatar image src
+     *
+     * @return string
+     */
+    public function getAvatarSrcAttribute() {
+        if(!file_exists(img_asset($this->file)))
+            $this->update(['image' => self::USER_DEFAULT_IMAGE]);
+
+        return img_asset($this->file, $this->extension, self::FOLDER . '/');
+    }
+
+    /**
      * @return mixed
      */
     public function getRoleNameAttribute()
@@ -142,20 +155,38 @@ class User extends Authenticatable
     /**
      * @return mixed
      */
-    public function getAuthorisedAttribute()
+    public function getCanDeleteUserAttribute()
     {
-        return Auth::user()->role->type !== Role::USER;
+        return (
+            (Auth::user()->id !== $this->id) &&
+            (
+                ($this->role->type === Role::USER && Auth::user()->type !== Role::USER) ||
+                ($this->role->type === Role::ADMIN && Auth::user()->type === Role::SUPER_ADMIN)
+            )
+        );
     }
 
     /**
-     * User avatar image src
-     *
-     * @return string
+     * @return mixed
      */
-    public function getAvatarSrcAttribute() {
-        if(!file_exists(img_asset($this->file)))
-            $this->update(['image' => self::USER_DEFAULT_IMAGE]);
+    public function getCanGrantAdminUserAttribute()
+    {
+        return (
+            (Auth::user()->id !== $this->id) &&
+            ($this->role->type === Role::USER) &&
+            (Auth::user()->role->type !== Role::USER)
+        );
+    }
 
-        return img_asset($this->file, $this->extension, self::FOLDER . '/');
+    /**
+     * @return mixed
+     */
+    public function getCanGrantSuperAdminUserAttribute()
+    {
+        return (
+            (Auth::user()->id !== $this->id) &&
+            ($this->role->type !== Role::SUPER_ADMIN) &&
+            (Auth::user()->role->type === Role::SUPER_ADMIN)
+        );
     }
 }

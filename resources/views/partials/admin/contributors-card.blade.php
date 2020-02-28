@@ -54,7 +54,7 @@
     @empty
         <div class="text-center col-12">
             <div class="alert alert-primary text-primary" role="alert">
-                Pas de intervenants disponible
+                Pas d'intervenants disponible
             </div>
         </div>
     @endforelse

@@ -48,7 +48,7 @@
                         <p class="text-dark font-weight-medium pt-4 mb-2">Adresse</p>
                         <p>{{ $user->address }}</p>
                         <p class="text-dark font-weight-medium pt-4 mb-2">Description</p>
-                        <p>{{ $user->description }}</p>
+                        <p class="text-justify">{{ $user->description }}</p>
                     </div>
                 </div>
             </div>

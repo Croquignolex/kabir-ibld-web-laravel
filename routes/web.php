@@ -61,10 +61,11 @@ Route::prefix('admin')->group(function() {
             'create' => 'admin.domains.create',
         ]);
         // Users routes...
-        Route::resource('users', 'UserController')->except('edit')->names([
+        Route::delete('users/grant/admin/{user}', 'UserController@grantAdmin')->name('admin.users.grant.admin');
+        Route::delete('users/grant/super/admin/{user}', 'UserController@grantSuperAdmin')->name('admin.users.grant.super.admin');
+        Route::resource('users', 'UserController')->except('edit', 'show', 'update')->names([
             'destroy' => 'admin.users.destroy', 'store' => 'admin.users.store',
-            'update' => 'admin.users.update', 'index' => 'admin.users.index',
-            'show' => 'admin.users.show', 'create' => 'admin.users.create',
+            'index' => 'admin.users.index', 'create' => 'admin.users.create',
         ]);
         // Services routes...
         Route::resource('services', 'ServiceController')->except('show')->names([

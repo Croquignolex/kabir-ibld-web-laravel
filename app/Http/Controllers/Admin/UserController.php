@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\User;
 use App\Models\Domain;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\Contributor;
 use App\Traits\FileManageTrait;
@@ -31,8 +33,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $contributors = Contributor::all()->sortByDesc('updated_at');
-        return view('admin.contributor.index', compact('contributors'));
+        $users = User::where('id', '<>', Auth::user()->id)->get()->sortByDesc('updated_at');
+        return view('admin.user.index', compact('users'));
     }
 
     /**
