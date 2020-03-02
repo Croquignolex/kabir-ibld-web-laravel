@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\User;
+use Exception;
+use App\Models\Role;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Hash;
+use App\Mail\UserRegisterMail;
+use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -46,32 +50,29 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param RegisterRequest $request
+     * @return RedirectResponse|Redirector
      */
-    protected function validator(array $data)
+    public function register(RegisterRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $user = Role::where('type', Role::USER)->first()->users()->create([
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'last_name' => $request->input('last_name'),
+            'first_name' => $request->input('first_name')
         ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        try
+        {
+            Mail::to($user->email)->send(new UserRegisterMail($user));
+            success_flash_message(trans('auth.success'), trans('auth.registration_message'));
+        }
+        catch (Exception $exception)
+        {
+            $user->delete();
+            danger_flash_message(trans('auth.error'), 'Erreur du serveur de mail, veillez réessayer plus tard ou contacter l\'administrateur');
+        }
+
+        return redirect(route('register'));
     }
 }

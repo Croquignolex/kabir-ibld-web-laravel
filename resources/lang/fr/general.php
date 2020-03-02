@@ -34,6 +34,6 @@ return [
     'dashboard' => 'Tableau de board',
     'confirmed' => 'Confirmation',
     'bad_link' => 'Le lien a expiré ou n\'est pas correct',
-    'well_confirmed' => 'Vous êtes identifié avec succèss. connectez-vous et commencez vos transactions' ,
+    'well_confirmed' => 'Vous êtes identifié avec succèss. connectez-vous et profites de la plateforme' ,
     'well_reset_sent' => 'Le lien de réinitialisation vous a été envoyé par mail, veillez consulter vos mails',
 ];

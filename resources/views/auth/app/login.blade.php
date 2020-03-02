@@ -35,10 +35,10 @@
                     Mot de passe oublié?
                     <a class="text-blue" href="{{ route('password.request') }}">Récupérez-le</a>
                 </p>
-                {{--<p>
+                <p>
                     Pas encore de compte?
                     <a class="text-blue" href="{{ route('register') }}">Inscrivez-vous</a>
-                </p>--}}
+                </p>
             </div>
         </div>
     </form>

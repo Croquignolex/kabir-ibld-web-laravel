@@ -26,10 +26,7 @@
                         <h4 class="text-dark mb-4">@yield('auth.master.page')</h4>
                         @if(session()->has('popup.message'))
                             <div class="text-center">
-                                <div class="alert alert-{{ session('popup.type') }} alert-dismissable text-danger" role="alert">
-                                    <button type="button" class="close text-danger" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="alert alert-{{ session('popup.type') }} text-{{ session('popup.type') }}" role="alert">
                                     {{ session('popup.message') }}
                                 </div>
                             </div>

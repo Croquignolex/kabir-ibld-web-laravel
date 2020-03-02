@@ -37,6 +37,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
     }
 
     /**
@@ -107,8 +108,7 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         $credentials = $request->only($this->username(), 'password');
-        Arr::add($credentials, 'is_confirmed', true);
-        return $credentials;
+        return Arr::add($credentials, 'is_confirmed', true);
     }
 
     /**

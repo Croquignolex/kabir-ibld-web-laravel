@@ -22,6 +22,7 @@ Route::prefix('app')->group(function() {
         Auth::routes();
         Route::group(['namespace' => 'Auth'], function() {
             //--Account routes...
+            Route::get('/account/{token}/validation/{email}', 'AccountController@validation')->name('account.validation');
             Route::get('/account', 'AccountController@index')->name('account.index');
             Route::put('/account', 'AccountController@update');
             Route::put('/account/avatar', 'AccountController@changeAvatar')->name('account.avatar');
@@ -29,8 +30,8 @@ Route::prefix('app')->group(function() {
         });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-        Route::resource('domains', 'DomainController');
-        Route::resource('countries', 'CountryController');
+        //Route::resource('domains', 'DomainController');
+        //Route::resource('countries', 'CountryController');
     });
 });
 

@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed file
  * @property mixed email
  * @property mixed phone
+ * @property mixed token
  * @property mixed country
  * @property mixed address
  * @property mixed last_name
@@ -50,7 +51,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name', 'last_name', 'post_code', 'extension',
         'city', 'country', 'phone', 'profession', 'address', 'role_id',
-        'file', 'description', 'email', 'is_confirmed', 'password'
+        'file', 'description', 'email', 'is_confirmed', 'password', 'token'
     ];
 
     /**
@@ -97,6 +98,16 @@ class User extends Authenticatable
     {
         if($this->role->type === Role::USER) return route('dashboard');
         else return route('admin.dashboard');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfirmationLinkAttribute()
+    {
+        return route('account.validation', [
+            'email' => $this->email, 'token' => $this->token
+        ]);
     }
 
     /**
