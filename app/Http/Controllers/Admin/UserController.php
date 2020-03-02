@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\Role;
 use App\Models\User;
-use App\Models\Domain;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use App\Models\Contributor;
+use Illuminate\Http\Request;
 use App\Traits\FileManageTrait;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
-use App\Http\Requests\ContributorRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -42,85 +43,102 @@ class UserController extends Controller
      */
     public function create()
     {
-        $domains = Domain::all()->sortByDesc('updated_at');
-        if($domains->count() == 0)
-        {
-            toast_message('Vous ne pouvez pas créer d\'intervenant sans domaine');
-            return back();
+        return view('admin.user.create');
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse|Redirector
+     * @throws ValidationException
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'last_name' => 'required|string|min:2|max:255',
+            'first_name' => 'required|string|min:2|max:255',
+            'email' => 'required|string|min:2|max:255|email|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
-        return view('admin.contributor.create', compact('domains'));
-    }
 
-    /**
-     * @param ContributorRequest $request
-     * @return RedirectResponse|Redirector
-     * @throws ValidationException
-     */
-    public function store(ContributorRequest $request)
-    {
-        $file = $this->storeFile($request, Contributor::FOLDER);
+        $file = $this->storeFile($request, User::FOLDER);
 
-        Contributor::create([
+        Role::where('type', Role::USER)->first()->users()->create([
             'file' =>  $file->name,
             'extension' => $file->extension,
-            'name' => $request->input('name'),
+            'city' => $request->input('city'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
+            'password' => Hash::make('fogadac'),
+            'country' => $request->input('country'),
             'address' => $request->input('address'),
-            'domain_id' => $request->input('domain_id'),
+            'last_name' => $request->input('last_name'),
+            'post_code' => $request->input('post_code'),
+            'profession' => $request->input('profession'),
+            'first_name' => $request->input('first_name'),
             'description' => $request->input('description'),
         ]);
 
-        toast_message('Intervenant enrégistré avec succès');
-        return redirect(route('admin.contributors.index'));
-    }
-
-    /**
-     * @param Contributor $contributor
-     * @return Factory|View
-     */
-    public function edit(Contributor $contributor)
-    {
-        $domains = Domain::all()->sortByDesc('updated_at');
-        return view('admin.contributor.edit', compact('contributor', 'domains'));
-    }
-
-    /**
-     * @param ContributorRequest $request
-     * @param Contributor $contributor
-     * @return RedirectResponse|Redirector
-     * @throws ValidationException
-     */
-    public function update(ContributorRequest $request, Contributor $contributor)
-    {
-        $file = $this->storeFile($request, Contributor::FOLDER, $contributor);
-
-        $contributor->update([
-            'file' =>  $file->name,
-            'extension' => $file->extension,
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
-            'domain_id' => $request->input('domain_id'),
-            'description' => $request->input('description'),
-        ]);
-
-        toast_message('Intervenant modifié avec succès');
-        return redirect(route('admin.contributors.index'));
+        toast_message('Utilisateur enrégistré avec succès. Mot de passe par défaut est: fodagac');
+        return redirect(route('admin.users.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Contributor $contributor
+     * @param User $user
      * @return RedirectResponse|Redirector
      * @throws Exception
      */
-    public function destroy(Contributor $contributor)
+    public function destroy(User $user)
     {
-        $contributor->delete();
-        toast_message('Service supprimé avec succès');
+        if($user->can_delete_user)
+        {
+            $user->delete();
+            toast_message('Utilisateur supprimé avec succès');
+        }
+        else toast_message('Vous ne pouvez pas supprimer cet utilisateur');
+
+        return back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param User $user
+     * @return RedirectResponse|Redirector
+     * @throws Exception
+     */
+    public function grantAdmin(User $user)
+    {
+        if($user->can_grant_admin_user)
+        {
+            $user->update(['role_id' => Role::where('type', Role::ADMIN)->first()->id]);
+            toast_message('Utilisateur nommé administrateur avec succès');
+        }
+        else toast_message('Vous ne pouvez pas nommer administrateur cet utilisateur');
+
+        return back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param User $user
+     * @return RedirectResponse|Redirector
+     * @throws Exception
+     */
+    public function grantSuperAdmin(User $user)
+    {
+        if($user->can_grant_super_admin_user)
+        {
+            $user->update(['role_id' => Role::where('type', Role::SUPER_ADMIN)->first()->id]);
+            toast_message('Utilisateur nommé super administrateur avec succès');
+        }
+        else toast_message('Vous ne pouvez pas nommer super administrateur cet utilisateur');
+
         return back();
     }
 }

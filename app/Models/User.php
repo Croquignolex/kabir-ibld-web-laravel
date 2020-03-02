@@ -28,9 +28,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed profession
  * @property mixed description
  * @property mixed password_reset
+ * @property mixed can_delete_user
  * @property mixed format_full_name
  * @property mixed format_last_name
  * @property mixed format_first_name
+ * @property mixed can_grant_admin_user
+ * @property mixed can_grant_super_admin_user
  */
 class User extends Authenticatable
 {
@@ -160,8 +163,8 @@ class User extends Authenticatable
         return (
             (Auth::user()->id !== $this->id) &&
             (
-                ($this->role->type === Role::USER && Auth::user()->type !== Role::USER) ||
-                ($this->role->type === Role::ADMIN && Auth::user()->type === Role::SUPER_ADMIN)
+                ($this->role->type === Role::USER && Auth::user()->role->type !== Role::USER) ||
+                ($this->role->type === Role::ADMIN && Auth::user()->role->type === Role::SUPER_ADMIN)
             )
         );
     }

@@ -16,6 +16,11 @@
                 </div>
                 <!-- body -->
                 <div class="card-body">
+                    <a href="{{ route('admin.users.create') }}"
+                       class="btn btn-primary mb-2">
+                        <i class="mdi mdi-account-multiple-plus-outline"></i>
+                        Ajouter un utilisateur
+                    </a>
                     <div class="row">
                         @forelse($users as $user)
                             <div class="col-lg-6 col-xl-4">
@@ -47,34 +52,41 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header justify-content-end border-bottom-0">
-                                            <div class="dropdown">
-                                                <button class="btn-dots-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                    @if($user->can_grant_admin_user)
-                                                        <button class="dropdown-item"
-                                                                onclick="document.getElementById('{{ $user->id }}-grant-admin').submit();">
-                                                            <i class="mdi mdi-trash-can-outline text-danger"></i>
-                                                            Nommer administrateur
-                                                        </button>
-                                                    @endif
-                                                    @if($user->can_grant_super_admin_user)
-                                                        <button class="dropdown-item"
-                                                                onclick="document.getElementById('{{ $user->id }}-grant-super-admin').submit();">
-                                                            <i class="mdi mdi-trash-can-outline text-danger"></i>
-                                                            Nommer super administrateur
-                                                        </button>
-                                                    @endif
-                                                    @if($user->can_delete_user)
-                                                        <button class="dropdown-item" data-toggle="modal" data-target="#delete-user-modal-{{ $user->id }}">
-                                                            <i class="mdi mdi-trash-can-outline text-danger"></i>
-                                                            Supprimer
-                                                        </button>
-                                                    @endif
+                                            @php
+                                                $can_grant_super_admin_user = $user->can_grant_super_admin_user;
+                                                $can_grant_admin_user = $user->can_grant_admin_user;
+                                                $can_delete_user = $user->can_delete_user;
+                                            @endphp
+                                            @if($can_grant_super_admin_user || $can_grant_admin_user || $can_delete_user)
+                                                <div class="dropdown">
+                                                    <button class="btn-dots-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                        @if($can_grant_super_admin_user)
+                                                            <button class="dropdown-item"
+                                                                    onclick="document.getElementById('{{ $user->id }}-grant-super-admin').submit();">
+                                                                <i class="mdi mdi-account-star text-success"></i>
+                                                                Nommer super administrateur
+                                                            </button>
+                                                        @endif
+                                                        @if($can_grant_admin_user)
+                                                            <button class="dropdown-item"
+                                                                    onclick="document.getElementById('{{ $user->id }}-grant-admin').submit();">
+                                                                <i class="mdi mdi-account-key text-primary"></i>
+                                                                Nommer administrateur
+                                                            </button>
+                                                        @endif
+                                                        @if($can_delete_user)
+                                                            <button class="dropdown-item" data-toggle="modal" data-target="#delete-user-modal-{{ $user->id }}">
+                                                                <i class="mdi mdi-trash-can-outline text-danger"></i>
+                                                                Supprimer
+                                                            </button>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                             <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
                                                 <i class="mdi mdi-close"></i>
                                             </button>

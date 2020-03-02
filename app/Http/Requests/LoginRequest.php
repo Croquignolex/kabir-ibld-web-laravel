@@ -17,7 +17,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => $this->required_string_2_255,
+            'email' => $this->required_email,
             'password' => $this->required_string_6_255
         ];
     }
