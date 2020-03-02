@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Services',
     'breadcrumb_icon' => 'mdi mdi-database-search',
     'breadcrumb_chain' => ['Services']

@@ -18,11 +18,7 @@
 
 @section('master.body')
     <div class="wrapper">
-        @if(($layout ?? '') === 'admin')
-            @include('partials.admin.side-bar')
-        @else
-            @include('partials.app.side-bar')
-        @endif
+        @include('partials.side-bar')
         <div class="page-wrapper">
             <!-- Header -->
             <header class="main-header" id="header">
@@ -34,9 +30,6 @@
                     <!-- Search form -->
                     <div class="search-form d-none d-lg-inline-block">
                         <div class="input-group">
-                            {{--<button type="button" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="mdi mdi-magnify"></i>
-                            </button>--}}
                             <input type="text" name="query" id="search-input" class="form-control" placeholder=""
                                    autofocus autocomplete="off" disabled/>
                         </div>

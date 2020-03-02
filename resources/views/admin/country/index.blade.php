@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Pays',
     'breadcrumb_icon' => 'mdi mdi-flag',
     'breadcrumb_chain' => ['Outils', 'Pays']

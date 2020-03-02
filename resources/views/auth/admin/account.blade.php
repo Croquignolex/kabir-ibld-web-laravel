@@ -3,7 +3,6 @@
 @endphp
 
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Mon profil',
     'breadcrumb_icon' => 'mdi mdi-account',
     'breadcrumb_chain' => ['Profil']

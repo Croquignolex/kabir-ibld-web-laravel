@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Utilitsateurs',
     'breadcrumb_icon' => 'mdi mdi-settings',
     'breadcrumb_chain' => ['Utilitsateurs']

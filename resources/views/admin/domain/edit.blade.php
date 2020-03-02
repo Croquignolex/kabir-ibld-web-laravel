@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Modifier',
     'breadcrumb_icon' => 'mdi mdi-folder-search-outline',
     'breadcrumb_chain' => ['Domains', 'Modifier']

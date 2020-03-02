@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Tableaau de bord',
     'breadcrumb_icon' => 'mdi mdi-monitor-dashboard',
     'breadcrumb_chain' => ['Tableaau de bord', 'Général']

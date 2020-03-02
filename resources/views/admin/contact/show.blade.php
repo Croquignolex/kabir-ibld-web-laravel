@@ -1,5 +1,4 @@
 @extends('layouts.app', [
-    'layout' => 'admin',
     'breadcrumb_name' => 'Detail',
     'breadcrumb_icon' => 'mdi mdi-email-open-outline',
     'breadcrumb_chain' => ['Outils', 'Méssages', 'Detail']
