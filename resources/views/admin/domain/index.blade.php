@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>Tous les domaines</h2>
+                    <h2>Tous les domaines ({{ $domains->count() }})</h2>
                 </div>
                 <!-- body -->
                 <div class="card-body">

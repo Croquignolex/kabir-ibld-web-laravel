@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>Tous les méssages</h2>
+                    <h2>Tous les méssages ({{ $contacts->count() }})</h2>
                 </div>
                 <!-- Table -->
                 <div class="card-body">

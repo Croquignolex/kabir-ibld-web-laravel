@@ -57,12 +57,15 @@
                                 </p>
                             </div>
                             <div class="tab-pane pt-3 fade" id="contributors" role="tabpanel" aria-labelledby="contributors-tab">
+                                ({{ $domain->contributors->count() }})
                                 @include('partials.admin.contributors-card', ['contributors' => $domain->contributors, 'domain_page' => true])
                             </div>
                             <div class="tab-pane pt-3 fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                                ({{ $domain->documents->count() }})
                                 @include('partials.admin.documents-card', ['documents' => $domain->documents, 'domain_page' => true])
                             </div>
                             <div class="tab-pane pt-3 fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                                ({{ $domain->contacts->count() }})
                                 @include('partials.admin.contacts-table', ['contacts' => $domain->contacts, 'domain_page' => true])
                             </div>
                         </div>

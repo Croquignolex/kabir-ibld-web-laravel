@@ -67,11 +67,11 @@ class UserController extends Controller
 
         Role::where('type', Role::USER)->first()->users()->create([
             'file' =>  $file->name,
+            'password' => 'fogadac',
             'extension' => $file->extension,
             'city' => $request->input('city'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
-            'password' => Hash::make('fogadac'),
             'country' => $request->input('country'),
             'address' => $request->input('address'),
             'last_name' => $request->input('last_name'),

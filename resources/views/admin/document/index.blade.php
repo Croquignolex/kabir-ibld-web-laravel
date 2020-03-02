@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>Liste des documents</h2>
+                    <h2>Liste des documents ({{ $documents->count() }})</h2>
                 </div>
                 <div class="card-body">
                     @include('partials.admin.documents-card', compact('documents'))

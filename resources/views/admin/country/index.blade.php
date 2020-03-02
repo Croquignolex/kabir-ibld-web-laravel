@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                    <h2>Liste des pays</h2>
+                    <h2>Liste des pays ({{ $countries->count() }})</h2>
                 </div>
                 <!-- Table -->
                 <div class="card-body">
