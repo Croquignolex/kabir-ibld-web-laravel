@@ -39,14 +39,9 @@
                             <small class="pt-1">{{ text_format($user->email, 25) }}</small>
                         </div>
                     </li>
-                    <li class="{{ active_page(collect(['admin.account.index'])) === 'active' ? 'bg-light' : '' }}">
-                        <a href="{{ route('admin.account.index') }}">
+                    <li class="{{ active_page(collect(['account.index'])) === 'active' ? 'bg-light' : '' }}">
+                        <a href="{{ route('account.index') }}">
                             <i class="mdi mdi-account"></i> Mon Profil
-                        </a>
-                    </li>
-                    <li class="{{ active_page(admin_user_pages()) === 'active' ? 'bg-light' : '' }}">
-                        <a href="{{ route('admin.users.index') }}">
-                            <i class="mdi mdi-settings"></i> Gérer les utilisateurs
                         </a>
                     </li>
                     <li class="dropdown-footer">

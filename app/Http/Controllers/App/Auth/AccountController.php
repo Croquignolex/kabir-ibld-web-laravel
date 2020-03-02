@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\App\Auth;
 
 use App\Traits\UserAccountTrait;
 use App\Http\Controllers\Controller;
@@ -16,6 +16,6 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin.auth');
+        $this->middleware('auth');
     }
 }

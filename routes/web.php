@@ -20,6 +20,13 @@ Route::prefix('app')->group(function() {
     Route::group(['namespace' => 'App'], function () {
         // Auth routes...
         Auth::routes();
+        Route::group(['namespace' => 'Auth'], function() {
+            //--Account routes...
+            Route::get('/account', 'AccountController@index')->name('account.index');
+            Route::put('/account', 'AccountController@update');
+            Route::put('/account/avatar', 'AccountController@changeAvatar')->name('account.avatar');
+            Route::put('/account/password', 'AccountController@changePassword')->name('account.password');
+        });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('domains', 'DomainController');
