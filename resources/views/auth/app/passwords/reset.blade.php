@@ -4,8 +4,9 @@
 @section('auth.master.page', 'Réinitialiser le mot de passe')
 
 @section('auth.master.body')
-    <form action="" method="POST">
+    <form action="{{ route('password.update') }}" method="POST">
         {{ csrf_field() }}
+        <input type="text" id="token" name="token" value="{{ old('token') ?? $token }}" hidden />
         <div class="row">
             <div class="form-group col-md-12">
                 <input type="email" class="form-control input-lg" id="email"
@@ -41,10 +42,10 @@
                 </label>
             </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">'Réinitialiser</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Réinitialiser</button>
                 <p>
-                    Vous avez déjà un compte?
-                    <a class="text-blue" href="{{ route('login') }}">Connectez-vous</a>
+                    Pas encore de compte?
+                    <a class="text-blue" href="{{ route('register') }}">Inscrivez-vous</a>
                 </p>
             </div>
         </div>

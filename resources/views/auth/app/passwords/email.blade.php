@@ -20,14 +20,14 @@
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Récupérer</button>
-                <p>
+                <p class="mb-2">
                     Vous avez déjà un compte?
                     <a class="text-blue" href="{{ route('login') }}">Connectez-vous</a>
                 </p>
-                {{--<p>
+                <p>
                     Pas encore de compte?
                     <a class="text-blue" href="{{ route('register') }}">Inscrivez-vous</a>
-                </p>--}}
+                </p>
             </div>
         </div>
     </form>
