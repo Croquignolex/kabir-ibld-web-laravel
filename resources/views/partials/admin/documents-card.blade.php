@@ -12,13 +12,13 @@
                         </a>
                     @endif
                     <div class="border-top border-primary text-right mt-2 pt-2">
-                        <button class="btn btn-sm btn-primary" data-toggle="popover"
-                                title="Description" data-content="{{ $document->description }}">
-                            ...
-                        </button>
                         <button class="btn btn-sm btn-info" title="Téléchargement"
                                 onclick="document.getElementById('{{ $document->id }}-download-form').submit();">
                             <i class="mdi mdi-download"></i>
+                        </button>
+                        <button class="btn btn-sm btn-primary" title="Datails"
+                                data-toggle="modal" data-target="#detail-document-modal-{{ $document->id }}">
+                            <i class="mdi mdi-eye"></i>
                         </button>
                         <a class="btn btn-sm btn-warning text-white" title="Modifier"
                             href="{{ route('admin.documents.edit', [$document]) }}">
@@ -28,6 +28,25 @@
                                 data-target="#delete-document-modal-{{ $document->id }}">
                             <i class="mdi mdi-trash-can-outline"></i>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="detail-document-modal-{{ $document->id }}" tabindex="-1" role="dialog" aria-labelledby="label-detail-document-modal-{{ $document->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="label-detail-document-modal-{{ $document->id }}">
+                            Description de {{ $document->name }}
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="pre-scrollable text-justify">
+                            {{ $document->description }}
+                        </p>
                     </div>
                 </div>
             </div>

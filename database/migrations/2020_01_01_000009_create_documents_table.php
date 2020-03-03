@@ -19,7 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->string('name', 255);
             $table->string('file', 255);
             $table->string('extension', 50);
-            $table->text('description');
+            $table->longText('description');
             $table->unsignedInteger('domain_id')->unsigned();
             $table->timestamps();
 

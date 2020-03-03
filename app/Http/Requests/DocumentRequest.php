@@ -19,7 +19,7 @@ class DocumentRequest extends FormRequest
         return [
             'name' => $this->required_string_2_255,
             'domain_id' => $this->required_numeric,
-            'description' => $this->required_string_2_510,
+            'description' => $this->required_string_2_unlimited,
         ];
     }
 }
