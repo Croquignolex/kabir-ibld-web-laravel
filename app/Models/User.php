@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FileManageTrait;
 use Illuminate\Support\Str;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +39,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use LocaleDateTimeTrait;
+    use LocaleDateTimeTrait, FileManageTrait;
 
     const USER_DEFAULT_IMAGE = 'default';
     const FOLDER = 'users';
@@ -72,6 +73,9 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->token = Str::random(64);
             $user->password = Hash::make($user->password);
+        });
+        static::deleting(function ($user) {
+            (new self)->deleteFile($user, self::FOLDER);
         });
     }
 

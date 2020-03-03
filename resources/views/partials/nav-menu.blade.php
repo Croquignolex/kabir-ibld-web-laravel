@@ -143,11 +143,11 @@
                     </li>
                     <li class="dropdown-footer">
                         <a class="nav-link logout" href="javascript: void(0);" role="button"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
                             <i class="mdi mdi-logout"></i>
                             Déconnexion
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                     </li>
