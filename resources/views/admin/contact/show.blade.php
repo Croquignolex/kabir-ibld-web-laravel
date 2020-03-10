@@ -62,7 +62,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <form method="POST" class="px-5 py-2" action="{{ route('admin.contacts.answer', [$contact]) }}">
+                                <form method="POST" class="px-5 py-2 form-inline" action="{{ route('admin.contacts.answer', [$contact]) }}">
                                     {{ csrf_field() }}
                                     <label for="answer">
                                         @if ($errors->has('answer'))
@@ -71,8 +71,11 @@
                                             </span>
                                         @endif
                                     </label>
-                                    <input type="text" class="form-control mb-3" value="{{ old('answer') }}"
+                                    <input type="text" class="form-control mb-3 mr-2 col" value="{{ old('answer') }}"
                                            placeholder="Entrer une réponse" name="answer" id="answer">
+                                    <button type="submit" class="btn btn-primary mb-3">
+                                        <i class="mdi mdi-send"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
