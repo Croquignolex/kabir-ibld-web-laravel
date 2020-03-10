@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App\Auth;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -93,6 +94,14 @@ class LoginController extends Controller
         $user = User::where(['email' => $credentials['email']])->first();
         if($user !== null)
         {
+            // Check expire date
+            $expire_at = $user->expire_at;
+            if($expire_at !== null) {
+                if ($expire_at->lt(Carbon::now())) {
+                    return false;
+                }
+            }
+            // Check role
             if($user->role->type === Role::USER)
                 return $this->guard()->attempt($this->credentials($request),
                     $request->filled('remember'));

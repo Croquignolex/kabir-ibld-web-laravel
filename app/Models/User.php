@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use App\Traits\FileManageTrait;
+use Exception;
 use Illuminate\Support\Str;
+use App\Traits\FileManageTrait;
+use Illuminate\Support\Facades\App;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed token
  * @property mixed country
  * @property mixed address
+ * @property mixed expire_at
  * @property mixed last_name
  * @property mixed extension
  * @property mixed post_code
@@ -50,7 +53,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'post_code', 'extension',
+        'first_name', 'last_name', 'post_code', 'extension', 'expire_at',
         'city', 'country', 'phone', 'profession', 'address', 'role_id',
         'file', 'description', 'email', 'is_confirmed', 'password', 'token'
     ];
@@ -62,6 +65,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'is_confirmed', 'email'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'expire_at'
     ];
 
     /**
@@ -121,6 +133,16 @@ class User extends Authenticatable
     {
         if($this->role->type === Role::USER) return route('password.reset', ['token' => $this->password_reset->token]);
         else return route('admin.password.reset', ['token' => $this->password_reset->token]);
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getExpiredDateAttribute()
+    {
+        return $this->dateFormat(App::getLocale(),
+            $this->getTimezoneDate($this->expire_at));
     }
 
     /**

@@ -21,7 +21,7 @@ return [
     'password_unconfirmed' => 'Those password those not match',
     'new_account' => 'Créez un nouveau compte',
     'enter_credentials' => 'Entrez vous identifiants',
-    'login_message' => 'Combinaison email et mot de passe incorrect ou votre compte n\'est pas encore actif',
+    'login_message' => 'Combinaison email et mot de passe incorrect ou compte désactivé. Veuillez contacter l\'administrateur pour plus d\'information',
     'logout_message' => 'Vous êtes actuellement déconnecté',
     'sign_up' => 'Inscription',
     'reset_pwd' => 'Réinitialiser le mot de passe',

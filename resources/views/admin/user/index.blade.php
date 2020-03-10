@@ -30,10 +30,6 @@
                                             <h5 class="mt-0 mb-2 text-dark">{{ $user->format_full_name }}</h5>
                                             <ul class="list-unstyled">
                                                 <li class="d-flex mb-1">
-                                                    <i class="mdi mdi-worker mr-1"></i>
-                                                    <span>{{ $user->profession }}</span>
-                                                </li>
-                                                <li class="d-flex mb-1">
                                                     <i class="mdi mdi-email mr-1"></i>
                                                     <span>{{ $user->email }}</span>
                                                 </li>
@@ -41,6 +37,17 @@
                                                     <i class="mdi mdi-phone mr-1"></i>
                                                     <span>{{ $user->phone }}</span>
                                                 </li>
+                                                @if($user->role->type === \App\Models\Role::USER && $user->expire_at !== null)
+                                                    <li class="d-flex mb-1 text-danger">
+                                                        <i class="mdi mdi-calendar-clock mr-1"></i>
+                                                        <span>{{ $user->expired_date }}</span>
+                                                    </li>
+                                                @else
+                                                    <li class="d-flex mb-1 text-primary">
+                                                        <i class="mdi mdi-calendar-clock mr-1"></i>
+                                                        <span>N'expire pas</span>
+                                                    </li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </a>
@@ -115,12 +122,21 @@
                                                             <p>{{ $user->city }}</p>
                                                             <p class="text-dark font-weight-medium pt-3 mb-2">Pays</p>
                                                             <p>{{ $user->country }}</p>
+                                                            <p class="text-dark font-weight-medium pt-3 mb-2">Créer le</p>
+                                                            <p>{{ $user->created_date }}</p>
                                                         </div>
                                                         <div class="col-8">
                                                             <p class="text-dark font-weight-medium pt-3 mb-2">Code postal</p>
                                                             <p>{{ $user->post_code }}</p>
                                                             <p class="text-dark font-weight-medium pt-3 mb-2">Adresse</p>
                                                             <p>{{ $user->address }}</p>
+                                                            @if($user->role->type === \App\Models\Role::USER && $user->expire_at !== null)
+                                                                <p class="text-dark font-weight-medium pt-3 mb-2">Expire le</p>
+                                                                <p class="text-danger">{{ $user->expired_date }}</p>
+                                                            @else
+                                                                <p class="text-dark font-weight-medium pt-3 mb-2">Expire le</p>
+                                                                <p class="text-primary">N'expire pas</p>
+                                                            @endif
                                                         </div>
                                                         <div class="col-12">
                                                             <p class="text-dark font-weight-medium pt-3 mb-2">Description</p>
