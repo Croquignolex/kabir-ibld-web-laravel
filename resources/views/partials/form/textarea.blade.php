@@ -14,8 +14,8 @@
             </span>
         </div>
         <textarea rows="5"
-                  id="description"
-                  name="description"
+                  id="{{ $id }}"
+                  name="{{ $id }}"
                   class="form-control">{{ $value }}</textarea>
     </div>
 </div>

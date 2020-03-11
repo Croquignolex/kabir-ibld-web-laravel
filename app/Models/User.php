@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use App\Traits\FileManageTrait;
 use Illuminate\Support\Facades\App;
@@ -23,6 +24,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed token
  * @property mixed country
  * @property mixed address
+ * @property mixed domains
  * @property mixed expire_at
  * @property mixed last_name
  * @property mixed extension
@@ -89,6 +91,16 @@ class User extends Authenticatable
         static::deleting(function ($user) {
             (new self)->deleteFile($user, self::FOLDER);
         });
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function domains()
+    {
+        return $this->belongsToMany('App\Models\Domain')
+            ->withPivot('reason', 'status')
+            ->withTimestamps();
     }
 
     /**

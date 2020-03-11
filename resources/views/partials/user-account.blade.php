@@ -39,6 +39,10 @@
                     <p>{{ $user->profession }}</p>
                     <p class="text-dark font-weight-medium pt-4 mb-2">Adresse</p>
                     <p>{{ $user->address }}</p>
+                    @if($user->role->type === \App\Models\Role::USER && $user->expire_at !== null)
+                        <p class="text-dark font-weight-medium pt-4 mb-2">Expiration du compte</p>
+                        <p class="text-danger">{{ $user->expired_date }}</p>
+                    @endif
                     <p class="text-dark font-weight-medium pt-4 mb-2">Description</p>
                     <p class="text-justify">{{ $user->description }}</p>
                 </div>

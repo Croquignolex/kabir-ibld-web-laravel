@@ -30,8 +30,10 @@ Route::prefix('app')->group(function() {
         });
         // ...
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-        //Route::resource('domains', 'DomainController');
-        //Route::resource('countries', 'CountryController');
+        // Domains routes...
+        Route::get('domains/subscribed', 'DomainController@subscribed')->name('domains.subscribed');
+        Route::put('domains/{domain}/subscribe', 'DomainController@subscribe')->name('domains.subscribe');
+        Route::resource('domains', 'DomainController')->only('index', 'show');
     });
 });
 

@@ -40,6 +40,34 @@
                             </div>
                         </ul>
                     </li>
+                    <!-- Domain -->
+                    <li class="has-sub expand {{ active_page(domain_pages()) }}">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#domain"
+                           aria-expanded="false" aria-controls="domain">
+                            <i class="mdi mdi-folder-multiple-outline"></i>
+                            <span class="nav-text">Domaines</span> <b class="caret"></b>
+                        </a>
+                        <ul class="collapse {{ active_page(domain_pages(), 'expend') }}" id="domain" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="{{ active_page(collect('domains.index')) }}">
+                                    <a class="sidenav-item-link" href="{{ route('domains.index') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-folder-search-outline"></i>
+                                        Tous les domaines
+                                    </span>
+                                    </a>
+                                </li>
+                                <li class="{{ active_page(collect('domains.subscribed')) }}">
+                                    <a class="sidenav-item-link" href="{{ route('domains.subscribed') }}">
+                                    <span class="nav-text">
+                                        <i class="mdi mdi-folder-search"></i>
+                                        Domaines souscrit
+                                    </span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

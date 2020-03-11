@@ -84,6 +84,17 @@ if(!function_exists('dashboard_pages'))
     }
 }
 
+if(!function_exists('domain_pages'))
+{
+    /**
+     * @return Collection
+     */
+    function domain_pages()
+    {
+        return collect(['domains.index', 'domains.show', 'domains.subscribed']);
+    }
+}
+
 if(!function_exists('admin_dashboard_pages'))
 {
     /**
