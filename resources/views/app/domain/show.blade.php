@@ -31,11 +31,6 @@
                                    aria-selected="false">
                                     <i class="mdi mdi-file-document-box-multiple-outline mr-1"></i> Documents</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts"
-                                   aria-selected="false">
-                                    <i class="mdi mdi-email-open-outline mr-1"></i> Messages</a>
-                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane pt-3 fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -45,13 +40,10 @@
                                     <li>{{ $domain->description }}</li>
                                 </ul>
                                 <p class="text-right">
-                                    <a class="btn btn-warning btn-sm text-white" title="Modifier"
-                                       href="{{ route('admin.domains.edit', [$domain]) }}">
-                                        <i class="mdi mdi-square-edit-outline"></i>
-                                    </a>
-                                    <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
+                                    <button class="btn btn-primary mt-2" data-toggle="modal"
                                             data-target="#delete-modal">
-                                        <i class="mdi mdi-trash-can-outline"></i>
+                                        <i class="mdi mdi-email"></i>
+                                        M'exprimer sur ce domaine
                                     </button>
                                 </p>
                             </div>
@@ -63,23 +55,12 @@
                                 ({{ $domain->documents->count() }})
                                 @include('partials.admin.documents-card', ['documents' => $domain->documents, 'domain_page' => true])
                             </div>
-                            <div class="tab-pane pt-3 fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-                                ({{ $domain->contacts->count() }})
-                                @include('partials.admin.contacts-table', ['contacts' => $domain->contacts, 'domain_page' => true])
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @component('components.delete-modal', [
-        'id' => 'delete-modal',
-        'title' => 'Supprimer ' . $domain->name,
-        'message' => 'Vous ne pourrez plus consulter ce domaine, êtes vous sûr?',
-        'route' => route('admin.domains.destroy', [$domain])
-    ])
-    @endcomponent
 @endsection
 
 @include('partials.table-page-push')

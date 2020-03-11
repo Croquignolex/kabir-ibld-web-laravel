@@ -1,3 +1,6 @@
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
 <div class="row">
     @forelse($documents as $document)
         <div class="col-sm-12 col-lg-6 col-xl-3 mb-2">
@@ -12,22 +15,26 @@
                         </a>
                     @endif
                     <div class="border-top border-primary text-right mt-2 pt-2">
-                        <button class="btn btn-sm btn-info" title="Téléchargement"
-                                onclick="document.getElementById('{{ $document->id }}-download-form').submit();">
-                            <i class="mdi mdi-download"></i>
-                        </button>
+                        @if($document->can_download)
+                            <button class="btn btn-sm btn-info" title="Téléchargement"
+                                    onclick="document.getElementById('{{ $document->id }}-download-form').submit();">
+                                <i class="mdi mdi-download"></i>
+                            </button>
+                        @endif
                         <button class="btn btn-sm btn-primary" title="Datails"
                                 data-toggle="modal" data-target="#detail-document-modal-{{ $document->id }}">
                             <i class="mdi mdi-eye"></i>
                         </button>
-                        <a class="btn btn-sm btn-warning text-white" title="Modifier"
-                            href="{{ route('admin.documents.edit', [$document]) }}">
-                            <i class="mdi mdi-square-edit-outline"></i>
-                        </a>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
-                                data-target="#delete-document-modal-{{ $document->id }}">
-                            <i class="mdi mdi-trash-can-outline"></i>
-                        </button>
+                        @if($user->role->type !== \App\Models\Role::USER)
+                            <a class="btn btn-sm btn-warning text-white" title="Modifier"
+                                href="{{ route('admin.documents.edit', [$document]) }}">
+                                <i class="mdi mdi-square-edit-outline"></i>
+                            </a>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" title="Supprimer"
+                                    data-target="#delete-document-modal-{{ $document->id }}">
+                                <i class="mdi mdi-trash-can-outline"></i>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -51,13 +58,15 @@
                 </div>
             </div>
         </div>
-        @component('components.delete-modal', [
-            'id' => 'delete-document-modal-' . $document->id,
-            'title' => 'Supprimer ' . $document->name,
-            'message' => 'Vous ne pourrez plus consulter ce document, êtes vous sûr?',
-            'route' => route('admin.documents.destroy', [$document])
-        ])
-        @endcomponent
+        @if($user->role->type !== \App\Models\Role::USER)
+            @component('components.delete-modal', [
+                'id' => 'delete-document-modal-' . $document->id,
+                'title' => 'Supprimer ' . $document->name,
+                'message' => 'Vous ne pourrez plus consulter ce document, êtes vous sûr?',
+                'route' => route('admin.documents.destroy', [$document])
+            ])
+            @endcomponent
+        @endif
         <form id="{{ $document->id }}-download-form" action="{{ route('admin.documents.download', [$document]) }}" method="POST" class="hidden">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}

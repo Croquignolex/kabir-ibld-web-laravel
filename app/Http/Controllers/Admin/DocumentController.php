@@ -26,7 +26,7 @@ class DocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin.auth');
+        $this->middleware('admin.auth')->except('download');
     }
 
     /**
@@ -125,14 +125,12 @@ class DocumentController extends Controller
      */
     public function download(Document $document)
     {
-        //todo: Check that the user has subscribe to this domain before download the document
-        $img_asset_path = 'public/assets/img/';
-        $file = base_path($img_asset_path . Document::FOLDER . '/') . $document->file . '.' . $document->extension;
-
-        if(File::exists($file))
+        if($document->can_download)
         {
-            // toast_message('Document en cours de téléchargement');
-            return response()->download($file);
+            $img_asset_path = 'public/assets/img/';
+            $file = base_path($img_asset_path . Document::FOLDER . '/') . $document->file . '.' . $document->extension;
+            // ...
+            if(File::exists($file)) return response()->download($file);
         }
 
         toast_message('Vous ne pouvez pas télécharger ce fichier');

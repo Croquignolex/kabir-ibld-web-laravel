@@ -49,11 +49,17 @@ class DomainController extends Controller
 
     /**
      * @param Domain $domain
-     * @return Factory|View
+     * @return Factory|RedirectResponse|View
      */
     public function show(Domain $domain)
     {
-        return view('app.domain.show', compact('domain'));
+        if(!$domain->can_subscribe && $domain->can_show)
+        {
+            return view('app.domain.show', compact('domain'));
+        }
+        else toast_message('Vous ne pouvez pas voir les details de ce domaine');
+
+        return back();
     }
 
     /**
