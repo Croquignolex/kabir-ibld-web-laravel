@@ -65,7 +65,6 @@ class ContactController extends Controller
             Mail::to($contact->email)->send(new MessageAnswerMail($contact, $answer));
             toast_message('Méssage envoyé avec succès');
         } catch (Exception $ex) {
-            dd($ex);
             toast_message('Erreur du serveur de mail');
         }
 

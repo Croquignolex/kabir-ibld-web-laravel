@@ -11,20 +11,20 @@
                     <p class="card-text pb-2">{{ $document->name }}</p>
                     @if(!($domain_page ?? false))
                         <a href="{{ route('admin.domains.show', [$document->domain]) }}">
-                            <span class="badge badge-primary">{{ $document->domain->name }}</span>
+                            <span class="badge badge-primary badge-pill">{{ $document->domain->name }}</span>
                         </a>
                     @endif
                     <div class="border-top border-primary text-right mt-2 pt-2">
+                        <button class="btn btn-sm btn-secondary" title="Datails"
+                                data-toggle="modal" data-target="#detail-document-modal-{{ $document->id }}">
+                            <i class="mdi mdi-eye"></i>
+                        </button>
                         @if($document->can_download)
-                            <button class="btn btn-sm btn-info" title="Téléchargement"
+                            <button class="btn btn-sm btn-primary" title="Téléchargement"
                                     onclick="document.getElementById('{{ $document->id }}-download-form').submit();">
                                 <i class="mdi mdi-download"></i>
                             </button>
                         @endif
-                        <button class="btn btn-sm btn-primary" title="Datails"
-                                data-toggle="modal" data-target="#detail-document-modal-{{ $document->id }}">
-                            <i class="mdi mdi-eye"></i>
-                        </button>
                         @if($user->role->type !== \App\Models\Role::USER)
                             <a class="btn btn-sm btn-warning text-white" title="Modifier"
                                 href="{{ route('admin.documents.edit', [$document]) }}">

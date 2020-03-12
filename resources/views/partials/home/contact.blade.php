@@ -70,6 +70,13 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
+                            <div class="form-group form-check">
+                                <input type="checkbox" name="copy" id="copy" class="form-check-input"
+                                       value="checked" {{ old('copy') }}>
+                                <label for="copy">M'envoyer une copie</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
                             <div class="submit text-center">
                                 <input name="submit" type="submit" class="btn btn-primary btn-lg" value="Envoyer">
                             </div>

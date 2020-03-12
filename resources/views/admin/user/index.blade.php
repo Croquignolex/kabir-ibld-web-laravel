@@ -110,7 +110,7 @@
                                                                 <h5 class="text-dark">({{ $user->profession }})</h5>
                                                                 <p>{{ $user->email }}</p>
                                                                 <p>{{ $user->phone }}</p>
-                                                                <span class="badge badge-primary mt-2">{{ $user->role_name }}</span>
+                                                                <span class="badge badge-pill badge-primary mt-2">{{ $user->role_name }}</span>
                                                             </div>
                                                         </div>
                                                     </div>

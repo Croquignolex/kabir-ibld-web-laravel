@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <h4 class="py-2 text-dark">{{ $user->format_full_name }}</h4>
                         <p>{{ $user->email }}</p>
-                        <span class="badge badge-primary mt-2">{{ $user->role_name }}</span>
+                        <span class="badge badge-pill badge-primary mt-2">{{ $user->role_name }}</span>
                     </div>
                 </div>
                 <hr class="w-100">

@@ -25,7 +25,7 @@
                                 </div>
                                 <div id="collapse{{ $domain->id }}" class="collapse {{ $loop->index == 0 ? 'show' : '' }}" aria-labelledby="heading{{ $domain->id }}" data-parent="#domains">
                                     <div class="card-body">
-                                        <span class="mb-2 badge badge-primary">{{ $domain->country->fr_name }}</span>
+                                        <span class="mb-2 badge badge-pill badge-primary">{{ $domain->country->fr_name }}</span>
                                         <p>{{ $domain->description }}</p>
                                         <p class="text-right">
                                             <a class="btn btn-primary btn-sm" title="Détails"

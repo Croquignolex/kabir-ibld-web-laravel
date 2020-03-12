@@ -27,7 +27,7 @@
                                                 <strong class="text-primary">{{ $contact->subject }}</strong> <br>
                                                 @if($contact->domain !== null)
                                                     <a href="{{ route('admin.domains.show', [$contact->domain]) }}">
-                                                        <span class="badge badge-primary">{{ $contact->domain->name }}</span>
+                                                        <span class="badge badge-pill badge-primary">{{ $contact->domain->name }}</span>
                                                     </a>
                                                 @endif
                                             </h4>

@@ -36,11 +36,11 @@
                             <div class="tab-pane pt-3 fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                                 <ul>
                                     <li><i class="{{ $domain->icon }} text-primary"></i></li>
-                                    <li><span class="badge badge-primary">{{ $domain->country->fr_name }}</span></li>
+                                    <li><span class="badge badge-pill badge-primary">{{ $domain->country->fr_name }}</span></li>
                                     <li>{{ $domain->description }}</li>
                                 </ul>
                                 <p class="text-right">
-                                    <button class="btn btn-primary mt-2" data-toggle="modal"
+                                    <button class="btn btn-primary mt-2 btn-sm" data-toggle="modal"
                                             data-target="#delete-modal">
                                         <i class="mdi mdi-email"></i>
                                         M'exprimer sur ce domaine

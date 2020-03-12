@@ -102,9 +102,9 @@
                             <a href="{{ route('admin.contacts.show', [$contact])  }}">
                                 <small>
                                     @if($contact->domain !== null)
-                                        <span class="mb-2 badge badge-primary">{{ text_format($contact->domain->name, 10) }}</span>
+                                        <span class="mb-2 badge badge-pill badge-primary">{{ text_format($contact->domain->name, 10) }}</span>
                                     @endif
-                                    <span class="mb-2 badge badge-secondary">{{ text_format($contact->name, 10) }}</span>
+                                    <span class="mb-2 badge badge-pill badge-secondary">{{ text_format($contact->name, 10) }}</span>
                                 </small><br>
                                 {{ text_format($contact->subject, 20) }}
                                 <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> {{ $contact->created_date }}</span>

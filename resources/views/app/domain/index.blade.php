@@ -32,14 +32,14 @@
                                 </div>
                                 <div id="collapse{{ $domain->id }}" class="collapse {{ $loop->index == 0 ? 'show' : '' }}" aria-labelledby="heading{{ $domain->id }}" data-parent="#domains">
                                     <div class="card-body">
-                                        <span class="mb-2 badge badge-primary">{{ $domain->country->fr_name }}</span>
+                                        <span class="mb-2 badge badge-primary badge-pill">{{ $domain->country->fr_name }}</span>
                                         @if(!$domain->can_subscribe)
-                                            <span class="mb-2 badge badge-{{ $domain->subscription_status[1] }}">{{ $domain->subscription_status[0] }}</span>
+                                            <span class="mb-2 badge badge-pill badge-{{ $domain->subscription_status[1] }}">{{ $domain->subscription_status[0] }}</span>
                                         @endif
                                         <p>{{ $domain->description }}</p>
                                         @if($domain->can_subscribe)
                                             <p class="text-right">
-                                                <button class="btn btn-primary mt-2" data-toggle="modal"
+                                                <button class="btn btn-primary mt-2 btn-sm" data-toggle="modal"
                                                         data-target="#subscribe-modal-{{ $domain->id }}">
                                                     <i class="mdi mdi-folder-account-outline"></i>
                                                     Souscrire
@@ -48,7 +48,7 @@
                                         @else
                                             @if($domain->can_show)
                                                 <p class="text-right">
-                                                    <a class="btn btn-success mt-2" href="{{ route('domains.show', [$domain]) }}">
+                                                    <a class="btn btn-success mt-2 btn-sm" href="{{ route('domains.show', [$domain]) }}">
                                                         <i class="mdi mdi-eye"></i>
                                                         Détails
                                                     </a>
