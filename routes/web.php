@@ -32,6 +32,8 @@ Route::prefix('app')->group(function() {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         // Domains routes...
         Route::get('domains/subscribed', 'DomainController@subscribed')->name('domains.subscribed');
+        Route::post('domains/contributor/{contributor}/mail', 'DomainController@contributorMail')->name('domains.contributor.mail');
+        Route::post('domains/{domain}/mail', 'DomainController@mail')->name('domains.mail');
         Route::put('domains/{domain}/subscribe', 'DomainController@subscribe')->name('domains.subscribe');
         Route::resource('domains', 'DomainController')->only('index', 'show');
     });

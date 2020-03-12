@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property mixed extension
+ * @property mixed id
  * @property mixed file
+ * @property mixed name
+ * @property mixed email
+ * @property mixed domain
+ * @property mixed extension
  */
 class Contributor extends Model
 {

@@ -64,26 +64,51 @@
             ])
             @endcomponent
         @else
-            <div class="modal fade" id="mail-modal-{{ $domain->id }}" tabindex="-1" role="dialog" aria-labelledby="label-subscribe-modal-{{ $domain->id }}" aria-hidden="true">
+            <div class="modal fade" id="mail-modal-{{ $contributor->id }}" tabindex="-1" role="dialog" aria-labelledby="label-mail-modal-{{ $contributor->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="label-subscribe-modal-{{ $domain->id }}">
-                                Pourquoi voulez-vous souscrire à ce domaine?
+                            <h4 class="modal-title" id="label-mail-modal-{{ $contributor->id }}">
+                                Envoyer un mail à <strong>{{ $contributor->name }}</strong>
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('domains.subscribe', [$domain]) }}" id="subscribe-modal-form-{{ $domain->id }}">
+                            <form method="POST" action="{{ route('domains.contributor.mail', [$contributor]) }}" id="mail-modal-form-{{ $contributor->id }}">
                                 {{ csrf_field() }}
-                                {{ method_field('PUT') }}
+                                @include('partials.form.input', [
+                                    'name' => 'Nom',
+                                    'id' => 'name-' . $contributor->id,
+                                    'icon' => 'mdi mdi-rename-box',
+                                    'type' => 'text',
+                                    'value' => old('name-' . $contributor->id) ?? $user->format_full_name,
+                                ])
+                                @include('partials.form.input', [
+                                    'name' => 'Email',
+                                    'id' => 'email-' . $contributor->id,
+                                    'icon' => 'mdi mdi-email',
+                                    'type' => 'email',
+                                    'value' => old('email-' . $contributor->id) ?? $user->email,
+                                ])
+                                @include('partials.form.input', [
+                                    'name' => 'Sujet',
+                                    'id' => 'subject-' . $contributor->id,
+                                    'icon' => 'mdi mdi-text',
+                                    'type' => 'text',
+                                    'value' => old('subject-' . $contributor->id),
+                                ])
                                 @include('partials.form.textarea', [
-                                    'name' => 'Réponse',
-                                    'id' => 'reason-' . $domain->id,
+                                    'name' => 'Méssage',
+                                    'id' => 'message-' . $contributor->id,
                                     'icon' => 'mdi mdi-format-align-justify',
-                                    'value' => old('reason'),
+                                    'value' => old('message-' . $contributor->id),
+                                ])
+                                @include('partials.form.checkbox', [
+                                    'name' => "M'envoyer une copie",
+                                    'id' => 'copy-' . $contributor->id,
+                                    'attribute' => old('copy-' . $contributor->id),
                                 ])
                             </form>
                         </div>
@@ -92,7 +117,7 @@
                                 <i class="mdi mdi-cancel"></i>
                                 Annuler
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="document.getElementById('subscribe-modal-form-{{ $domain->id }}').submit();">
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('mail-modal-form-{{ $contributor->id }}').submit();">
                                 <i class="mdi mdi-send"></i>
                                 Envoyer
                             </button>

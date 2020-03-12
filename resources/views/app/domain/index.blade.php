@@ -78,7 +78,7 @@
                                                         'name' => 'Réponse',
                                                         'id' => 'reason-' . $domain->id,
                                                         'icon' => 'mdi mdi-format-align-justify',
-                                                        'value' => old('reason'),
+                                                        'value' => old('reason-' . $domain->id),
                                                     ])
                                                 </form>
                                             </div>

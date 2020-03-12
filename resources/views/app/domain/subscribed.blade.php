@@ -29,7 +29,7 @@
                                         <span class="mb-2 badge badge-pill badge-success">Membre</span>
                                         <p>{{ $domain->description }}</p>
                                         <p class="text-right">
-                                            <a class="btn btn-success mt-2" href="{{ route('domains.show', [$domain]) }}">
+                                            <a class="btn btn-success mt-2 btn-sm" href="{{ route('domains.show', [$domain]) }}">
                                                 <i class="mdi mdi-eye"></i>
                                                 Détails
                                             </a>

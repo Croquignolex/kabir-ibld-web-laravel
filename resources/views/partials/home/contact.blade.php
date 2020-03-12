@@ -25,7 +25,8 @@
                                     @endif
                                 </label>
                                 <input type="text" name="name" id="name" class="form-control"
-                                       placeholder="Votre nom *" value="{{ old('name') }}">
+                                       placeholder="Votre nom *"
+                                       value="{{ old('name') ?? (\Illuminate\Support\Facades\Auth::user()->format_full_name ?? '') }}">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -38,7 +39,8 @@
                                     @endif
                                 </label>
                                 <input type="text" name="email" id="email" class="form-control"
-                                       placeholder="Votre adresse email *" value="{{ old('email') }}">
+                                       placeholder="Votre adresse email *"
+                                       value="{{ old('email') ?? (\Illuminate\Support\Facades\Auth::user()->email ?? '') }}">
                             </div>
                         </div>
                     </div>

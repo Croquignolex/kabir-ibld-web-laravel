@@ -8,8 +8,8 @@ use App\Models\Contact;
 use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\View\View;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
-use App\Mail\ContactCopyMail;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
@@ -49,10 +49,19 @@ class HomeController extends Controller
 
         try
         {
-            $contact = Contact::create($request->all());
+            Contact::create($request->all());
             if($request->input('copy') !== null)
+            {
                 Mail::to($request->input('email'))
-                    ->send(new ContactCopyMail($contact));
+                        ->send(new ContactMail(
+                            $request->input('name'),
+                            $request->input('email'),
+                            $request->input('subject'),
+                            $request->input('message'),
+                            null
+                        )
+                    );
+            }
             toast_message('Méssage envoyé avec succès');
         } catch (Exception $ex) {
             toast_message('Erreur du serveur de mail');
